@@ -13,11 +13,11 @@
         android:elevation="10dp"
         android:orientation="vertical"
         android:background="@android:color/background_light"
-        app:layout_heightPercent="20%h">
+        app:layout_heightPercent="15%h">
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_heightPercent="62.5%h">
+            app:layout_heightPercent="50%h">
 
             <TextView
                 android:layout_width="0dp"
@@ -28,7 +28,6 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_marginLeftPercent="5%w"
-                app:layout_marginTopPercent="25%h"
                 app:layout_widthPercent="15%w" />
             <FrameLayout
                 android:layout_width="0dp"
@@ -64,7 +63,7 @@
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_heightPercent="37.5%h">
+            app:layout_heightPercent="50%h">
             <android.support.v7.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
