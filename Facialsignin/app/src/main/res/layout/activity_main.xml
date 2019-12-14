@@ -104,10 +104,12 @@
 
 
     </com.zhy.android.percent.support.PercentLinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_heightPercent="75%h">
+        app:layout_heightPercent="70%h">
+
         <com.zhy.android.percent.support.PercentLinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
