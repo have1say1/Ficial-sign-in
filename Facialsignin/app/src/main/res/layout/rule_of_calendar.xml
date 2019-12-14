@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        app:layout_heightPercent="15%w"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/back"
+            android:onClick="onClickBack"
+            app:layout_marginLeftPercent="5%w"
+            app:layout_widthPercent="4%w" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="打卡方式"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_widthPercent="78%w" />
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground">
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/daily"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:layout_marginBottom="3dp"
+                app:layout_heightPercent="15%w">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="每天"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_marginLeftPercent="5%w"
+                    app:layout_marginTopPercent="5%w"
+                    app:layout_widthPercent="20%w" />
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginLeftPercent="65%w"
+                    app:layout_heightPercent="30%h"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"/>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/white"
+                app:layout_heightPercent="97%w"
+                app:layout_marginLeftPercent="0%w">
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:id="@+id/weekly"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="3dp"
+                    app:layout_heightPercent="15%w">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="每周"
+                        android:textSize="18dp"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_marginLeftPercent="5%w"
+                        app:layout_marginTopPercent="5%w"
+                        app:layout_widthPercent="20%w" />
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_marginLeftPercent="65%w"
+                        app:layout_heightPercent="30%h"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="3dp"
+                    app:layout_heightPercent="11%w">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="周一"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_marginLeftPercent="5%w"
+                        app:layout_marginTopPercent="3%w"
+                        app:layout_widthPercent="20%w" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        app:layout_heightPercent="40%h"
+                        app:layout_marginLeftPercent="65%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="3dp"
+                    app:layout_heightPercent="11%w">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="周二"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_marginLeftPercent="5%w"
+                        app:layout_marginTopPercent="3%w"
+                        app:layout_widthPercent="20%w" />
+                    <CheckBox
+                        android:id="@+id/checkBox2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        app:layout_heightPercent="40%h"
+                        app:layout_marginLeftPercent="65%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="3dp"
+                    app:layout_heightPercent="11%w">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="周三"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_marginLeftPercent="5%w"
+                        app:layout_marginTopPercent="3%w"
+                        app:layout_widthPercent="20%w" />
+                    <CheckBox
+                        android:id="@+id/checkBox3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        app:layout_heightPercent="40%h"
+                        app:layout_marginLeftPercent="65%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="3dp"
+                    app:layout_heightPercent="11%w">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="周四"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_marginLeftPercent="5%w"
+                        app:layout_marginTopPercent="3%w"
+                        app:layout_widthPercent="20%w" />
+                    <CheckBox
+                        android:id="@+id/checkBox4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        app:layout_heightPercent="40%h"
+                        app:layout_marginLeftPercent="65%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="3dp"
+                    app:layout_heightPercent="11%w">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="周五"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_marginLeftPercent="5%w"
+                        app:layout_marginTopPercent="3%w"
+                        app:layout_widthPercent="20%w" />
+                    <CheckBox
+                        android:id="@+id/checkBox5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        app:layout_heightPercent="40%h"
+                        app:layout_marginLeftPercent="65%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="3dp"
+                    app:layout_heightPercent="11%w">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="周六"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_marginLeftPercent="5%w"
+                        app:layout_marginTopPercent="3%w"
+                        app:layout_widthPercent="20%w" />
+                    <CheckBox
+                        android:id="@+id/checkBox6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        app:layout_heightPercent="40%h"
+                        app:layout_marginLeftPercent="65%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+                <com.zhy.android.percent.support.PercentLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/white"
+                    android:layout_marginBottom="3dp"
+                    app:layout_heightPercent="11%w">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:text="周日"
+                        android:textSize="16dp"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_marginLeftPercent="5%w"
+                        app:layout_marginTopPercent="3%w"
+                        app:layout_widthPercent="20%w" />
+                    <CheckBox
+                        android:id="@+id/checkBox7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        app:layout_heightPercent="40%h"
+                        app:layout_marginLeftPercent="65%w" />
+                </com.zhy.android.percent.support.PercentLinearLayout>
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"/>
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/monthly"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:layout_marginBottom="0dp"
+                app:layout_heightPercent="15%w">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="每月"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_marginLeftPercent="5%w"
+                    app:layout_marginTopPercent="5%w"
+                    app:layout_widthPercent="20%w" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_marginLeftPercent="65%w"
+                    app:layout_heightPercent="30%h"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical" />
+            </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+            <com.zhy.android.percent.support.PercentLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:layout_marginBottom="3dp"
+                app:layout_heightPercent="75%w">
+
+                <CalendarView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></CalendarView>
+
+            </com.zhy.android.percent.support.PercentLinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+
+
+    </ScrollView>
+
+</com.zhy.android.percent.support.PercentLinearLayout>
