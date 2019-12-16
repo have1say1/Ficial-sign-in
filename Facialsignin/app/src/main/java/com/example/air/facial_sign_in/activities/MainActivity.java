@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tev1 = (TextView) findViewById(R.id.tv1);
+        TextView tev1 = (TextView) findViewById(R.id.my);
         tev1.setOnClickListener(new TextViewListener());
         TextView tev2 = (TextView) findViewById(R.id.tv2);
         tev2.setOnClickListener(new TextViewListener());
         TextView tev3 = (TextView) findViewById(R.id.tv3);
         tev3.setOnClickListener(new TextViewListener());
-        TextView tev4 = (TextView) findViewById(R.id.tv4);
+        TextView tev4 = (TextView) findViewById(R.id.message);
         tev4.setOnClickListener(new TextViewListener());
         }
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             // TODO Auto-generated method stub
             switch (v.getId()) {
-                case R.id.tv1:
+                case R.id.my:
                     intent = new Intent(MainActivity.this, UserDetailActivity.class);
                     startActivity(intent);
                     System.out.println("1");
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     System.out.println("3");
                     break;
-                case R.id.tv4:
+                case R.id.message:
                     intent = new Intent(MainActivity.this, MessageActivity.class);
                     startActivity(intent);
                     System.out.println("4");

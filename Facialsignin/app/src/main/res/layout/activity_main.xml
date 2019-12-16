@@ -9,16 +9,6 @@
     tools:context="com.example.air.facial_sign_in.activities.MainActivity">
 
     <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
         android:id="@+id/tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,8 +16,7 @@
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv1" />
+        app:layout_constraintRight_toRightOf="parent" />
     <TextView
         android:id="@+id/tv3"
         android:layout_width="wrap_content"
@@ -38,16 +27,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv2" />
-    <TextView
-        android:id="@+id/tv4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="消息队列"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv3" />
 
     <com.zhy.android.percent.support.PercentLinearLayout
         android:layout_width="match_parent"
@@ -367,7 +346,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="签到"
-                android:textColor="@color/grey"/>
+                android:textColor="@color/grey"
+                android:id="@+id/sigin"/>
 
         </LinearLayout>
 
@@ -385,7 +365,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="消息"
-                android:textColor="@color/grey"/>
+                android:textColor="@color/grey"
+                android:id="@+id/message"/>
 
         </LinearLayout>
 
@@ -403,7 +384,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的"
-                android:textColor="@color/grey"/>
+                android:textColor="@color/grey"
+                android:id="@+id/my"/>
 
         </LinearLayout>
     </com.zhy.android.percent.support.PercentLinearLayout>
