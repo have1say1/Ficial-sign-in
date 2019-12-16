@@ -1,13 +1,15 @@
-package com.example.air.facial_sign_in;
+package com.example.air.facial_sign_in.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class meetingActivity extends AppCompatActivity {
+import com.example.air.facial_sign_in.R;
+
+public class CamActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_meeting);
+        setContentView(R.layout.activity_cam);
     }
 }

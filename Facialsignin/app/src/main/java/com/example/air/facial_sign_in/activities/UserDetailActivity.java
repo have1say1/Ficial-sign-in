@@ -45,5 +45,25 @@ public class UserDetailActivity extends AppCompatActivity {
         // TODO Auto-generated method stub
         this.finish();
     }
+    public void onClickBar(View v){
+        // TODO Auto-generated method stub
+        switch (v.getId()) {
+
+            case R.id.sigin:
+                intent = new Intent(UserDetailActivity.this, MainActivity.class);
+                startActivity(intent);
+                System.out.println("3");
+                break;
+            case R.id.message:
+                intent = new Intent(UserDetailActivity.this, MessageActivity.class);
+                startActivity(intent);
+                System.out.println("4");
+                break;
+            case R.id.my:
+
+                break;
+        }
+
+    }
 
 }
