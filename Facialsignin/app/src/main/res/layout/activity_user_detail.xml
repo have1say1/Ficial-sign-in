@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                app:layout_heightPercent="70%w">
+                app:layout_heightPercent="65%w">
 
 
                 <ImageView
@@ -55,7 +55,7 @@
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@drawable/touxiang"
+                            android:src="@drawable/touxiang2"
                             app:layout_heightPercent="20%w"
                             app:layout_widthPercent="20%w" />
 
@@ -105,7 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="照片更新"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
                     app:layout_marginLeftPercent="1%w"
                     app:layout_marginTopPercent="5%w"
@@ -137,7 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="考勤管理"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
                     app:layout_marginLeftPercent="1%w"
                     app:layout_marginTopPercent="5%w"
@@ -170,7 +170,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="二维码分享"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
                     app:layout_marginLeftPercent="1%w"
                     app:layout_marginTopPercent="5%w"
@@ -202,7 +202,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="个人设置"
-                    android:textColor="@color/colorPrimaryDark"
+                    android:textColor="@color/cardview_dark_background"
                     android:textSize="16sp"
                     app:layout_marginLeftPercent="1%w"
                     app:layout_marginTopPercent="5%w"

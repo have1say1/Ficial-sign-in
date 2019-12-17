@@ -21,9 +21,10 @@
             <com.zhy.android.percent.support.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/cardview_light_background"
                 android:orientation="horizontal"
-                app:layout_heightPercent="15%w">
+                app:layout_heightPercent="15%w"
+                android:layout_marginBottom="5dp">
 
 
                 <ImageView
@@ -31,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:onClick="onClickBack"
-                    android:src="@drawable/back"
+                    android:src="@drawable/blk_back"
                     app:layout_marginLeftPercent="5%w"
                     app:layout_widthPercent="4%w" />
 
@@ -40,7 +41,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="消息队列"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/cardview_dark_background"
                     android:textSize="20sp"
                     app:layout_widthPercent="80%w" />
 
