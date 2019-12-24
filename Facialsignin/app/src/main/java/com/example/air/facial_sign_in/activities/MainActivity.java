@@ -13,8 +13,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
+        MyApplication application = (MyApplication)this.getApplicationContext();
+        if(!application.getState()){
+            intent=new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(intent);
+        }
+
+        setContentView(R.layout.activity_main);
         }
 
     public void onClickBar(View v){

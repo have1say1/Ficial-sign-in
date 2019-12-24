@@ -90,7 +90,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@color/white"
-            app:layout_heightPercent="10%w"
+            app:layout_heightPercent="8%w"
             app:layout_marginLeftPercent="0%w">
 
             <com.zhy.android.percent.support.PercentLinearLayout
@@ -99,8 +99,8 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:onClick="onClick"
-                app:layout_heightPercent="50%w"
-                app:layout_marginLeftPercent="3%w">
+                app:layout_heightPercent="8%w"
+                app:layout_marginLeftPercent="4%w">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -108,25 +108,29 @@
                     android:text="课程成员"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
-                    app:layout_marginTopPercent="1%h" />
+                    android:layout_gravity="right|center_vertical"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="共4人"
-                    android:textColor="@color/grey"
-                    android:textSize="20sp"
-                    app:layout_marginTopPercent="1%h"
-                    app:layout_marginLeftPercent="55%w"/>
+                <com.zhy.android.percent.support.PercentFrameLayout
+                    android:layout_width="10dp"
+                    android:layout_height="match_parent"
+                    app:layout_widthPercent="74%w"
+                    app:layout_marginTopPercent="4%h">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|center_vertical"
+                        android:text="共4人"
+                        android:textSize="16sp"/>
+                </com.zhy.android.percent.support.PercentFrameLayout>
 
                 <ImageView
-                    android:id="@+id/mlist"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:src="@drawable/jiantou"
-                    app:layout_marginLeftPercent="3%w"
-                    app:layout_marginTopPercent="3%h"
-                    app:layout_heightPercent="8%h" />
+                    app:layout_marginLeftPercent="1%w"
+                    app:layout_heightPercent="55%h"
+                    android:layout_gravity="center_vertical"/>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -207,13 +211,13 @@
                 android:text="课程名称"
                 android:textSize="18dp"
                 android:textColor="@color/colorPrimary"
-                app:layout_marginLeftPercent="5%w"
+                app:layout_marginLeftPercent="4%w"
                 app:layout_marginTopPercent="5%w"
                 app:layout_widthPercent="20%w" />
             <com.zhy.android.percent.support.PercentFrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:layout_widthPercent="68%w">
+                app:layout_widthPercent="69%w">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -244,13 +248,13 @@
                 android:text="时间"
                 android:textSize="18dp"
                 android:textColor="@color/colorPrimary"
-                app:layout_marginLeftPercent="5%w"
+                app:layout_marginLeftPercent="4%w"
                 app:layout_marginTopPercent="5%w"
                 app:layout_widthPercent="20%w" />
             <com.zhy.android.percent.support.PercentFrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:layout_widthPercent="68%w">
+                app:layout_widthPercent="69%w">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -281,13 +285,13 @@
                 android:text="地址"
                 android:textSize="18dp"
                 android:textColor="@color/colorPrimary"
-                app:layout_marginLeftPercent="5%w"
+                app:layout_marginLeftPercent="4%w"
                 app:layout_marginTopPercent="5%w"
                 app:layout_widthPercent="20%w" />
             <com.zhy.android.percent.support.PercentFrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:layout_widthPercent="68%w">
+                app:layout_widthPercent="69%w">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -322,13 +326,13 @@
                 android:text="签到方式"
                 android:textSize="18dp"
                 android:textColor="@color/colorPrimary"
-                app:layout_marginLeftPercent="5%w"
+                app:layout_marginLeftPercent="4%w"
                 app:layout_marginTopPercent="5%w"
                 app:layout_widthPercent="20%w" />
             <com.zhy.android.percent.support.PercentFrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:layout_widthPercent="68%w">
+                app:layout_widthPercent="69%w">
 
                 <TextView
                     android:layout_width="wrap_content"
