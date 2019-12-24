@@ -19,6 +19,7 @@ import java.io.IOException;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     Intent intent;
+    private static final int rusult = -1 ;
     private static final String TAG ="LoginActivity" ;
     //手机号
     private EditText mEtPhonum;
@@ -71,13 +72,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    private void login() {
+    private int login() {
         final String phone_number = mEtPhonum.getText().toString().trim();
         final String password = mEtPwd.getText().toString().trim();
 
         if(TextUtils.isEmpty(phone_number) || TextUtils.isEmpty(password)){
             Toast.makeText(LoginActivity.this, "用户名或者密码不能为空", Toast.LENGTH_SHORT).show();
-            return;
+            return -1;
         }
         new Thread(){
             @Override
@@ -99,8 +100,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 mTvResult.setText("登录成功");
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
-//                                MyApplication application = (MyApplication) this.getApplicationContext();
-//                                application.setState(true);
+                                MyApplication application = (MyApplication) this.getApplicationContext();
+                                application.setState(true);
                             }else{
                                 mTvResult.setText("登录失败");
                             }

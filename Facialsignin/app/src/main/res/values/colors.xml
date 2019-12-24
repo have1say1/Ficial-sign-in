@@ -10,4 +10,6 @@
     <color name="blue">#26B8F2</color>
     <color name="colorBackground">#F2F2F2</color>
     <color name="darkgrey">#808A87</color>
+    <color name="color_bg_notification">#80000000</color>
+    <color name="color_bg_name">#80000000</color>
 </resources>

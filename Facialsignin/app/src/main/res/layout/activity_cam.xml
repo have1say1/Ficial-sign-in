@@ -1,51 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<com.zhy.android.percent.support.PercentFrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CamActivity"
-    android:orientation="vertical">
-
-
-    <ImageView
-        android:layout_width="10dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:contentDescription="@string/cus_name1"
-        android:contextClickable="false"
-        android:onClick="onClickBack"
-        android:src="@drawable/blk_back" />
-    <com.example.jialichun.client.view.MySurfaceView
-        android:id="@+id/mView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!--<ImageView-->
-    <!--android:layout_width="0dp"-->
-    <!--android:layout_height="304dp"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:contentDescription="@string/cus_name1"-->
-    <!--android:src="@drawable/camer"-->
-    <!--app:layout_widthPercent="80%w"-->
-    <!--app:layout_heightPercent="87%w"/>-->
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.CamActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/white"
-        android:layout_gravity="bottom"
-        app:layout_heightPercent="40%h">
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="@string/cus_name1"
-            android:src="@drawable/campic" />
+        android:layout_height="match_parent">
+        <TextureView
+            android:id="@+id/single_camera_texture_preview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
+        <com.arcsoft.arcfacedemo.widget.FaceRectView
+            android:id="@+id/single_camera_face_rect_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
-</com.zhy.android.percent.support.PercentFrameLayout>
+    <Switch
+        android:id="@+id/single_camera_switch_liveness_detect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="20dp"
+        android:text="@string/liveness_detect" />
 
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_gravity="bottom|end"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="register"
+            android:text="@string/register" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="switchCamera"
+            android:text="@string/switch_camera" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/single_camera_recycler_view_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>
