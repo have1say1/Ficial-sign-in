@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="0dp"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/meeting"
+        app:cardBackgroundColor="@android:color/background_light"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:layout_heightPercent="48%w"
+        app:layout_widthPercent="90%w">
+
+
+        <com.zhy.android.percent.support.PercentLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/meeting_cover"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/meeting"
+                app:layout_heightPercent="34.3%w"
+                app:layout_widthPercent="100%w" />
+
+            <TextView
+                android:id="@+id/meeting_title"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="移动应用开发"
+                android:textColor="@android:color/background_dark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_heightPercent="20%h" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:paddingLeft="10dp"
+                app:layout_heightPercent="10%h">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/person" />
+
+                <TextView
+                    android:id="@+id/meeting_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="13dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="16"
+                    android:textColor="@color/grey"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </com.zhy.android.percent.support.PercentLinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+</com.zhy.android.percent.support.PercentFrameLayout>
