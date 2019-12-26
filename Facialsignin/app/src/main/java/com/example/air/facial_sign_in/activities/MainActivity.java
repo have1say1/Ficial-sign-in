@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
         if(!application.getState()){
             intent=new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);
+            application.setState(true);
         }
-
         setContentView(R.layout.activity_main);
         }
 
