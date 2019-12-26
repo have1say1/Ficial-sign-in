@@ -64,13 +64,5 @@
             android:textColor="@color/yellow" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/login_tv_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="登录结果"
-        android:textSize="30dp"
-        android:textColor="@color/blue"/>
-
 
 </LinearLayout>

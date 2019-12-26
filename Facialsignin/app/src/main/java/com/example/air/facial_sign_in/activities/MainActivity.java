@@ -33,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         MyApplication application = (MyApplication)this.getApplicationContext();
-//        if(!application.getState()){
-//            intent=new Intent(MainActivity.this,LoginActivity.class);
-//            startActivity(intent);
-//        }
 
+        if(!application.getState()){
+            intent=new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(intent);
+            application.setState(true);
+        }
         setContentView(R.layout.activity_main);
 //初始化线性布局管理器
         mLinearLayoutManager = new LinearLayoutManager(this);
