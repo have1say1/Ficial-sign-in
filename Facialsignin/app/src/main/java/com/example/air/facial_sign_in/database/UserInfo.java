@@ -10,12 +10,22 @@ public class UserInfo extends LitePalSupport {
 
     private DataBean data;
 
+    private String msg;
+
     public int getErrorCode() {
         return errorcode;
     }
 
     public void setErrorCode(int errorcode) {
         this.errorcode = errorcode;
+    }
+
+    public String getMSG() {
+        return msg;
+    }
+
+    public void setMSG(String msg) {
+        this.msg = msg;
     }
 
     public DataBean getData() {
