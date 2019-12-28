@@ -16,9 +16,14 @@ import java.util.List;
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ItemHolder> {
 
     private List<Meeting> meetings;
+    private OnItemClickListener listener;
 
     public MeetingAdapter(List<Meeting> items) {
         meetings = items;
+    }
+    public MeetingAdapter(List<Meeting> items , OnItemClickListener listener) {
+        meetings = items;
+        this.listener = listener;
     }
 
     @Override
@@ -27,13 +32,20 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ItemHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         //设置Item图片
         holder.image.setImageResource(R.drawable.meeting);
         //设置Item文字
         holder.title.setText(meetings.get(position).getMname());
         //setting sum of people joining the meeting.
         holder.num.setText(""+meetings.get(position).getSum());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(position);
+            }
+        });
+
     }
 
     @NonNull
@@ -56,4 +68,9 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ItemHold
             num = item.findViewById(R.id.meeting_num);
         }
     }
+    public interface OnItemClickListener{
+
+        void onClick(int pos);
+    }
+
 }

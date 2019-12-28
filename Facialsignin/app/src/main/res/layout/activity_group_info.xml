@@ -108,12 +108,13 @@
                     android:text="课程成员"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
+                    app:layout_widthPercent="20%w"
                     android:layout_gravity="right|center_vertical"/>
 
                 <com.zhy.android.percent.support.PercentFrameLayout
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
-                    app:layout_widthPercent="74%w"
+                    app:layout_widthPercent="69%w"
                     app:layout_marginTopPercent="4%h">
 
                     <TextView

@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
 import com.example.air.facial_sign_in.model.Meeting;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private MeetingAdapter mRecycleViewAdapter;
-
+    private MyApplication application;
 
     private List<Meeting> meetings;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MyApplication application = (MyApplication)this.getApplicationContext();
+        application = (MyApplication)this.getApplicationContext();
 
         if(!application.getState()){
             intent=new Intent(MainActivity.this,LoginActivity.class);
@@ -85,9 +86,18 @@ public class MainActivity extends AppCompatActivity {
                 mRecyclerView.setLayoutManager(mLinearLayoutManager);
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
                 //初始化适配器
-                mRecycleViewAdapter = new MeetingAdapter(meetings);
+                mRecycleViewAdapter = new MeetingAdapter(meetings, new MeetingAdapter.OnItemClickListener() {
+                    @Override
+                    public void onClick(int pos) {
+                        intent = new Intent(MainActivity.this,MeetingActivity.class);
+
+
+                        startActivity(intent);
+                    }
+                });
                 //设置适配器
                 mRecyclerView.setAdapter(mRecycleViewAdapter);
+
             }
         });
     }
@@ -153,7 +163,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+
+
     }
+
+
 
 
 }
