@@ -32,6 +32,17 @@ public class HttpUtils {
         return "{\"phonenumber\":" + "\"" + phonenumber + "\"" + "," + "\"password\":" + "\"" + password + "\"" + "}";
     }
 
+    public String registJson(String phonenumber, String password, String username, String face, String organization, int sex) {
+        return "{\"phonenumber\":" + "\"" + phonenumber + "\"" + "," + "\"password\":" + "\"" + password + "\"" +
+                "," + "\"username\":" + "\"" + username + "\"" + "," + "\"face\":" + "\"" + face + "\"" +
+                "," + "\"organization\":" + "\"" + organization + "\"" + "," + "\"sex\":" +  sex  +
+                "}";
+    }
+
+    public String inviteJson(String userid, String meetingid) {
+        return "{\"userid\":" + "\"" + userid + "\"" + "," + "\"meetingid\":" + "\"" + meetingid + "\"" + "}";
+    }
+
 
 }
 

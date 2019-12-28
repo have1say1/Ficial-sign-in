@@ -46,8 +46,13 @@
         <activity android:name=".activities.MeetingActivity" />
         <activity android:name=".activities.ForgetActivity" />
         <activity android:name=".activities.Regist1Activity" />
+        <activity android:name=".activities.Regist3Activity" />
+        <activity android:name=".activities.Regist4Activity" />
+        <activity android:name=".activities.Regist5Activity" />
+        <activity android:name=".activities.InviteActivity" />
         <activity android:name=".activities.MainActivity"/>
         <activity android:name=".activities.BaseActivity" />
+        <activity android:name=".activities.SettingActivity" />
         <activity android:name=".activities.ChooseFunctionActivity" />
 
         <provider

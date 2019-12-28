@@ -1,19 +1,19 @@
 package com.example.air.facial_sign_in.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
-import com.example.air.facial_sign_in.database.UserInfo;
+import com.example.air.facial_sign_in.model.UserInfo;
 import com.example.air.facial_sign_in.util.HttpUtils;
 import com.google.gson.Gson;
 
@@ -27,14 +27,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //密码
     private EditText mEtPwd;
     //登录按键
-    private Button mBtnLogin;
 
     private String url ="http://123.56.96.92:3000/api/v1/user/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login2);
+        setContentView(R.layout.activity_login);
         initView();
     }
 
@@ -45,7 +44,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void initView() {
         mEtPhonum = (EditText) findViewById(R.id.phone_number);
         mEtPwd = (EditText) findViewById(R.id.password);
-        mBtnLogin = (Button) findViewById(R.id.login_bt);
     }
 
     public void onClick(View v) {
@@ -53,10 +51,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.login_bt:
                 login();
-//                MyApplication application = (MyApplication) this.getApplicationContext();
-//                application.setState(true);
-//                intent = new Intent(LoginActivity.this, MainActivity.class);
-//                startActivity(intent);
                 break;
             case R.id.forget_bt:
                 intent = new Intent(LoginActivity.this, ForgetActivity.class);
@@ -64,6 +58,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.regist_bt:
                 intent = new Intent(LoginActivity.this, Regist1Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.testbutton:
+                intent = new Intent(LoginActivity.this, InviteActivity.class);
                 startActivity(intent);
                 break;
 
@@ -89,7 +87,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 try {
                     String result = httpUtils.login(url, user);
-                    Log.d(TAG, "返回结果:" + result);
+                    Log.d(TAG, "LoginActivity返回结果:" + result);
+
+                    //保存用户数据到SharedPreferences
+                    //getSharedPreferences第一个参数是文件名称，第二个参数是操作模式
+                    SharedPreferences mSharedPreferences = getSharedPreferences("Userdata", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                    editor.putString("all_userdata",result);
+                    editor.apply();
+
+
+                    //解析数据到类UserInfo
                     Gson gson = new Gson();
                     final UserInfo userinfo = gson.fromJson(result, UserInfo.class);//result就是服务器返回的Json字符串
                     //更新UI,在UI线程中
@@ -97,10 +105,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void run() {
                             if(userinfo.getErrorCode() == 0){
+                                //保存登陆状态数据到SharedPreferences
+                                SharedPreferences mSharedPreferences = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                editor.putBoolean("IsLogin",true);
+                                editor.apply();
+
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
-//                                MyApplication application = (MyApplication) this.getApplicationContext();
-//                                application.setState(true);
                             }else{
                                 if(!(TextUtils.isEmpty(phone_number) || TextUtils.isEmpty(password))){
                                     Toast.makeText(LoginActivity.this, "用户名或者密码错误", Toast.LENGTH_SHORT).show();

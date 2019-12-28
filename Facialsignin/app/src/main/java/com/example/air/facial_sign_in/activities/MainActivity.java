@@ -1,5 +1,6 @@
 package com.example.air.facial_sign_in.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -25,20 +26,21 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private MeetingAdapter mRecycleViewAdapter;
-    private MyApplication application;
 
     private List<Meeting> meetings;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        application = (MyApplication)this.getApplicationContext();
+        //判断登录状态
+        SharedPreferences prefs = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
+        Boolean islogin = prefs.getBoolean("IsLogin",false);
 
-        if(!application.getState()){
+        if(!islogin){
             intent=new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);
-            application.setState(true);
         }
         setContentView(R.layout.activity_main);
 //初始化线性布局管理器
