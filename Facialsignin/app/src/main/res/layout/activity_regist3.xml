@@ -50,13 +50,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/white"
-                    app:layout_marginTopPercent="10%w">
+                    app:layout_marginTopPercent="10%w"
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="80dp"
+                    <LinearLayout
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
-                        android:text="姓名"
-                        android:textSize="16sp" />
+                        android:textColorHint="@color/white"
+                        app:layout_marginTopPercent="10%w">
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:text="姓"
+                            android:textSize="16sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="42dp"
+                            android:text="名"
+                            android:textSize="16sp" />
+                    </LinearLayout>
                     <EditText
                         android:id="@+id/regist_user_name"
                         android:layout_width="match_parent"
@@ -78,7 +91,7 @@
                     app:layout_marginTopPercent="10%w">
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
                         android:text="身份证号码"
                         android:textSize="16sp" />
@@ -103,9 +116,9 @@
                     app:layout_marginTopPercent="10%w">
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
-                        android:text="公司/组织"
+                        android:text="公司 / 组织"
                         android:textSize="16sp" />
                     <EditText
                         android:id="@+id/regist_organization"
@@ -130,11 +143,23 @@
                     android:textColorHint="@color/white"
                     app:layout_marginTopPercent="10%w">
 
-                    <TextView
-                        android:layout_width="80dp"
+                    <LinearLayout
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
-                        android:text="性别"
-                        android:textSize="16sp" />
+                        android:textColorHint="@color/white"
+                        android:layout_marginTop="4dp">
+                        <TextView
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:text="性"
+                            android:textSize="16sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="42dp"
+                            android:text="别"
+                            android:textSize="16sp" />
+                    </LinearLayout>
 
                     <RadioGroup
                         android:id="@+id/rg_group"
@@ -148,14 +173,14 @@
                         android:layout_height="wrap_content"
                         android:text="男"
                         android:textSize="16sp"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_marginLeft="40dp"/>
                     <RadioButton
                         android:id="@+id/regist_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="女"
                         android:textSize="16sp"
-                        android:layout_marginLeft="20dp"/>
+                        android:layout_marginLeft="40dp"/>
                     </RadioGroup>
 
 

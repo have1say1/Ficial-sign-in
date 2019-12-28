@@ -39,6 +39,10 @@ public class HttpUtils {
                 "}";
     }
 
+    public String inviteJson(String userid, String meetingid) {
+        return "{\"userid\":" + "\"" + userid + "\"" + "," + "\"meetingid\":" + "\"" + meetingid + "\"" + "}";
+    }
+
 
 }
 

@@ -1,6 +1,8 @@
 package com.example.air.facial_sign_in.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -87,8 +89,17 @@ public class Regist5Activity extends AppCompatActivity {
                     Log.d(TAG, "user_regist:" + user_regist);
 
                     try {
-                        final String result = httpUtils.login(url, user_regist);
+                        String result = httpUtils.login(url, user_regist);
                         Log.d(TAG, "返回结果:" + result);
+
+                        //保存数据到SharedPreferences
+                        //getSharedPreferences第一个参数是文件名称，第二个参数是操作模式
+                        SharedPreferences mSharedPreferences = getSharedPreferences("Userdata", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = mSharedPreferences.edit();
+                        editor.putString("all_userdata",result);
+                        editor.apply();
+
+                        //解析数据到类UserInfo
                         Gson gson = new Gson();
                         final UserInfo userinfo = gson.fromJson(result, UserInfo.class);//result就是服务器返回的Json字符串
                         //更新UI,在UI线程中

@@ -6,12 +6,12 @@ import android.view.View;
 
 import com.example.air.facial_sign_in.R;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_myinfo);
+        setContentView(R.layout.setting);
     }
 
 

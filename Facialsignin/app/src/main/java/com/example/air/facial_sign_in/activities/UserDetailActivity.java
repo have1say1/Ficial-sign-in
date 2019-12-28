@@ -27,8 +27,12 @@ public class UserDetailActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.my_settings:
-                intent=new Intent(UserDetailActivity.this,UserInfoActivity.class);
+                intent=new Intent(UserDetailActivity.this,SettingActivity.class);
                 System.out.println("2");
+                startActivity(intent);
+                break;
+            case R.id.my_info:
+                intent=new Intent(UserDetailActivity.this,UserInfoActivity.class);
                 startActivity(intent);
                 break;
             default:

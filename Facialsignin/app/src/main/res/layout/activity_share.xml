@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="0815"
+                android:text="126133"
                 android:textColor="@color/yellow"
                 android:textSize="36sp" />
 

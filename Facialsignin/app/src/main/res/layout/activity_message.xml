@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.air.facial_sign_in.activities.MessageActivity">
+    tools:context="com.example.air.facial_sign_in.activities.MessageActivity"
+    android:background="@color/colorBackground">
 
     <com.zhy.android.percent.support.PercentFrameLayout
         android:id="@+id/note_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <com.zhy.android.percent.support.PercentLinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -40,7 +39,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="消息队列"
+                    android:text="消息"
                     android:textColor="@color/cardview_dark_background"
                     android:textSize="20sp"
                     app:layout_widthPercent="80%w" />
@@ -51,8 +50,11 @@
                     android:layout_gravity="center_vertical"
                     app:layout_marginRightPercent="5%w"
                     app:layout_widthPercent="7%w" />
-
             </com.zhy.android.percent.support.PercentLinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"/>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -63,6 +65,7 @@
                     android:id="@+id/note_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
                     android:orientation="vertical">
 
                     <com.zhy.android.percent.support.PercentLinearLayout
@@ -71,7 +74,7 @@
                         android:layout_height="0dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
-                        app:layout_heightPercent="22%w">
+                        app:layout_heightPercent="20%w">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="0dp"
@@ -79,10 +82,8 @@
                             android:src="@drawable/huiyi"
                             app:layout_heightPercent="16%w"
                             app:layout_marginLeftPercent="6%w"
-                            app:layout_marginTopPercent="3%w"
+                            app:layout_marginTopPercent="2%w"
                             app:layout_widthPercent="16%w">
-
-
                         </de.hdodenhof.circleimageview.CircleImageView>
 
                         <com.zhy.android.percent.support.PercentLinearLayout
@@ -95,19 +96,19 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="会议一"
-                                android:textSize="16sp"
-                                android:textStyle="bold"
+                                android:textSize="17dp"
+                                android:textColor="@color/cardview_dark_background"
                                 app:layout_marginLeftPercent="20%h"
-                                app:layout_marginTopPercent="20%h" />
+                                app:layout_marginTopPercent="18%h" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="时间更改通知"
                                 android:textColor="@color/grey"
-                                android:textSize="12sp"
+                                android:textSize="14sp"
                                 app:layout_marginLeftPercent="20%h"
-                                app:layout_marginTopPercent="20%h" />
+                                app:layout_marginTopPercent="15%h" />
 
                         </com.zhy.android.percent.support.PercentLinearLayout>
 
@@ -130,7 +131,7 @@
                         android:layout_marginTop="3dp"
                         android:background="@color/white"
                         android:orientation="horizontal"
-                        app:layout_heightPercent="22%w">
+                        app:layout_heightPercent="20%w">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:layout_width="0dp"
@@ -138,10 +139,8 @@
                             android:src="@drawable/huiyi"
                             app:layout_heightPercent="16%w"
                             app:layout_marginLeftPercent="6%w"
-                            app:layout_marginTopPercent="3%w"
+                            app:layout_marginTopPercent="2%w"
                             app:layout_widthPercent="16%w">
-
-
                         </de.hdodenhof.circleimageview.CircleImageView>
 
                         <com.zhy.android.percent.support.PercentLinearLayout
@@ -154,19 +153,19 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="会议二"
-                                android:textSize="16sp"
-                                android:textStyle="bold"
+                                android:textSize="17dp"
+                                android:textColor="@color/cardview_dark_background"
                                 app:layout_marginLeftPercent="20%h"
-                                app:layout_marginTopPercent="20%h" />
+                                app:layout_marginTopPercent="18%h" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="地点更改通知"
                                 android:textColor="@color/grey"
-                                android:textSize="12sp"
+                                android:textSize="14sp"
                                 app:layout_marginLeftPercent="20%h"
-                                app:layout_marginTopPercent="20%h" />
+                                app:layout_marginTopPercent="15%h" />
 
                         </com.zhy.android.percent.support.PercentLinearLayout>
 
