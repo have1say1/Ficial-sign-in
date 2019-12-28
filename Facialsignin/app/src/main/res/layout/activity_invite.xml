@@ -98,8 +98,8 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:text="重新输入"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
             </com.zhy.android.percent.support.PercentFrameLayout>
 
             <TextView

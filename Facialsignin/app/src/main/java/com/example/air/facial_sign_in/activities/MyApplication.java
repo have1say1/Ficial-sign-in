@@ -2,9 +2,6 @@ package com.example.air.facial_sign_in.activities;
 
 import android.app.Application;
 
-/**
- * Created by jialichun on 2019/12/17.
- */
 
 public class MyApplication extends Application {
     public  boolean state;

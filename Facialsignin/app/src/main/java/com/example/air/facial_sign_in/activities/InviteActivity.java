@@ -60,7 +60,7 @@ public class InviteActivity extends AppCompatActivity implements VerificationCod
                 Gson gson = new Gson();
                 UserInfo userinfo = gson.fromJson(alluserdata, UserInfo.class);
                 userId = userinfo.getData().getPhoneNumber();
-                Log.d("InviteActivity", " userId:" +  userId);
+                Log.d("InviteActivity", " myuserId:" +  userId);
 
                 HttpUtils httpUtils = new HttpUtils();
                 //转换为JSON
@@ -69,7 +69,7 @@ public class InviteActivity extends AppCompatActivity implements VerificationCod
 
                 try {
                     final String result = httpUtils.login(url, meeting);
-                    Log.d("InviteActivity", "返回结果:" + result);
+                    Log.d("InviteActivity", "InviteActivity返回结果:" + result);
                     //Gson gson = new Gson();
                     final MeetingInfo meetinginfo = gson.fromJson(result, MeetingInfo.class);//result就是服务器返回的Json字符串
                     //更新UI,在UI线程中

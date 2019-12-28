@@ -90,7 +90,7 @@ public class Regist5Activity extends AppCompatActivity {
 
                     try {
                         String result = httpUtils.login(url, user_regist);
-                        Log.d(TAG, "返回结果:" + result);
+                        Log.d(TAG, "regist5Activity返回结果:" + result);
 
                         //保存数据到SharedPreferences
                         //getSharedPreferences第一个参数是文件名称，第二个参数是操作模式
@@ -108,6 +108,13 @@ public class Regist5Activity extends AppCompatActivity {
                             public void run() {
                                 if(userinfo.getErrorCode() == 0){
                                     Toast.makeText(Regist5Activity.this, "注册成功", Toast.LENGTH_SHORT).show();
+
+                                    //保存登陆状态数据到SharedPreferences，注册成功即登录true
+                                    SharedPreferences mSharedPreferences = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                    editor.putBoolean("IsLogin",true);
+                                    editor.apply();
+
                                     intent = new Intent(Regist5Activity.this, MainActivity.class);
                                     startActivity(intent);
                                 }else{

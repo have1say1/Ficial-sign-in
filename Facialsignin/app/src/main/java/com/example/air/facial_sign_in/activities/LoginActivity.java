@@ -89,14 +89,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 try {
                     String result = httpUtils.login(url, user);
-                    Log.d(TAG, "返回结果:" + result);
+                    Log.d(TAG, "LoginActivity返回结果:" + result);
 
-                    //保存数据到SharedPreferences
+                    //保存用户数据到SharedPreferences
                     //getSharedPreferences第一个参数是文件名称，第二个参数是操作模式
                     SharedPreferences mSharedPreferences = getSharedPreferences("Userdata", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = mSharedPreferences.edit();
                     editor.putString("all_userdata",result);
                     editor.apply();
+
 
                     //解析数据到类UserInfo
                     Gson gson = new Gson();
@@ -106,6 +107,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void run() {
                             if(userinfo.getErrorCode() == 0){
+                                //保存登陆状态数据到SharedPreferences
+                                SharedPreferences mSharedPreferences = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                editor.putBoolean("IsLogin",true);
+                                editor.apply();
+
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }else{
