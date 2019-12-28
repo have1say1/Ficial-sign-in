@@ -8,12 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
-import com.example.air.facial_sign_in.database.UserInfo;
+import com.example.air.facial_sign_in.model.UserInfo;
 import com.example.air.facial_sign_in.util.HttpUtils;
 import com.google.gson.Gson;
 

@@ -5,15 +5,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
 import com.example.air.facial_sign_in.database.MeetingInfo;
-import com.example.air.facial_sign_in.database.UserInfo;
+import com.example.air.facial_sign_in.model.Meeting;
+import com.example.air.facial_sign_in.model.UserInfo;
 import com.example.air.facial_sign_in.util.HttpUtils;
 import com.google.gson.Gson;
 import com.jyn.vcview.VerificationCodeView;
@@ -71,7 +70,8 @@ public class InviteActivity extends AppCompatActivity implements VerificationCod
                     final String result = httpUtils.login(url, meeting);
                     Log.d("InviteActivity", "InviteActivity返回结果:" + result);
                     //Gson gson = new Gson();
-                    final MeetingInfo meetinginfo = gson.fromJson(result, MeetingInfo.class);//result就是服务器返回的Json字符串
+                    final Meeting meetinginfo = gson.fromJson(result, Meeting.class);
+//                    final MeetingInfo meetinginfo = gson.fromJson(result, MeetingInfo.class);//result就是服务器返回的Json字符串
                     //更新UI,在UI线程中
                     runOnUiThread(new Runnable() {
                         @Override

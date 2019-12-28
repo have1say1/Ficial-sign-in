@@ -1,6 +1,8 @@
 package com.example.air.facial_sign_in.model;
 
 public class Meeting {
+    private int errorcode;
+    private String msg;
     private String mcover;
     private String mname;
     private String mid;
@@ -13,6 +15,20 @@ public class Meeting {
     private int endTime;
     private String ownnerId;
     private int sum;
+
+    public int getErrorCode() {
+        return errorcode;
+    }
+    public void setErrorCode(int errorcode) {
+        this.errorcode = errorcode;
+    }
+
+    public String getMSG() {
+        return msg;
+    }
+    public void setMSG(String msg) {
+        this.msg = msg;
+    }
 
     public Meeting(String mname,int sum){
         this.mname = mname;

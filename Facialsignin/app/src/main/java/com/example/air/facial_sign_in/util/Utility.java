@@ -1,14 +1,5 @@
 package com.example.air.facial_sign_in.util;
 
-import android.text.TextUtils;
-
-import com.example.air.facial_sign_in.database.UserInfo;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 //public class Utility {
 //
 //    /**

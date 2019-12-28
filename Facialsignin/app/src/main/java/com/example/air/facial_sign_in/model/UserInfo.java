@@ -1,4 +1,4 @@
-package com.example.air.facial_sign_in.database;
+package com.example.air.facial_sign_in.model;
 
 import com.google.gson.annotations.SerializedName;
 
