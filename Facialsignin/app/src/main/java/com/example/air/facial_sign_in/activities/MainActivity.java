@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         application = (MyApplication)this.getApplicationContext();
+        userId = "";
         //判断登录状态
         SharedPreferences prefs = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
         Boolean islogin = prefs.getBoolean("IsLogin",false);
@@ -75,12 +76,13 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                MeetingListService s;
-                Bundle bundle = getIntent().getExtras();
                 String uid = "12345678_1";
+                if (userId == ""){
+                    userId = uid;
+                }
                 int type;
                 type = 0;
-                MeetingListService r = new MeetingListService(uid,type);
+                MeetingListService r = new MeetingListService(userId,type);
                 try {
                     meetings = r.getModel();
                     showResponse();
@@ -165,9 +167,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() throws Exception {
-        MeetingListService s = new MeetingListService();
-        String str = s.DataUtl();
-        meetings = s.meetingsDAO(str);
+        //设置布局管理器
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        //初始化适配器
+        mRecycleViewAdapter = new MeetingAdapter(meetings);
+        //设置适配器
+        mRecyclerView.setAdapter(mRecycleViewAdapter);
 
     }
 
