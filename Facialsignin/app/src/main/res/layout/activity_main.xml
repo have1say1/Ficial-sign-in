@@ -37,6 +37,8 @@
                 app:layout_widthPercent="60%w" />
 
             <FrameLayout
+                android:id="@+id/join_organ"
+                android:onClick="onClickBar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:layout_widthPercent="10%w">
