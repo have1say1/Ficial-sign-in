@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 
@@ -123,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 System.out.println("4");
                 break;
+            case R.id.join_organ:
+                intent = new Intent(MainActivity.this, InviteActivity.class);
+                startActivity(intent);
+                break;
+
 
         }
 

@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.air.facial_sign_in.R;
-import com.example.air.facial_sign_in.database.MeetingInfo;
 import com.example.air.facial_sign_in.model.Meeting;
 import com.example.air.facial_sign_in.model.UserInfo;
 import com.example.air.facial_sign_in.util.HttpUtils;
