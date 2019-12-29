@@ -17,6 +17,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ItemHold
 
     private List<Meeting> meetings;
     private OnItemClickListener listener;
+    private int[] imgResource = {R.drawable.meeting,R.drawable.meeting2,R.drawable.db};
 
     public MeetingAdapter(List<Meeting> items) {
         meetings = items;
@@ -26,6 +27,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ItemHold
         this.listener = listener;
     }
 
+
     @Override
     public int getItemCount() {
         return meetings.size();
@@ -34,7 +36,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ItemHold
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
         //设置Item图片
-        holder.image.setImageResource(R.drawable.meeting);
+        holder.image.setImageResource(imgResource[position%3]);
         //设置Item文字
         holder.title.setText(meetings.get(position).getMname());
         //setting sum of people joining the meeting.
