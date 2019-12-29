@@ -55,12 +55,14 @@
                 app:layout_widthPercent="10%w" >
 
                 <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/add_meeting"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    app:layout_widthPercent="50%w"
-                    app:layout_heightPercent="50%w"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/plus" />
+                    android:onClick="onClickAdd"
+                    android:src="@drawable/plus"
+                    app:layout_heightPercent="50%w"
+                    app:layout_widthPercent="50%w" />
             </com.zhy.android.percent.support.PercentFrameLayout>
 
         </com.zhy.android.percent.support.PercentLinearLayout>
