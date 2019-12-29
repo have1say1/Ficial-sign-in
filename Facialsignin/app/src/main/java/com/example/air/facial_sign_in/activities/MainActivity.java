@@ -77,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 MeetingListService s;
                 Bundle bundle = getIntent().getExtras();
-                String uid;
+                String uid = "12345678_1";
                 int type;
                 type = 0;
-                MeetingListService r = new MeetingListService(userId,type);
+                MeetingListService r = new MeetingListService(uid,type);
                 try {
                     meetings = r.getModel();
                     showResponse();
