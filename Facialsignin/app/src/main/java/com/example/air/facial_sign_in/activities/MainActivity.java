@@ -145,19 +145,19 @@ public class MainActivity extends AppCompatActivity {
     private void bindViews() {
         mRecyclerView = findViewById(R.id.meeting_containner);
     }
-    @SuppressLint("ResourceAsColor")
+
     public void onClickList(View v){
         CardView v1 = findViewById(R.id.meeting_joinList);
         CardView v2 = findViewById(R.id.meeting_manageList);
         switch (v.getId()){
             case R.id.meeting_joinList:
-                v1.setCardBackgroundColor(R.color.yellow);
-                v2.setCardBackgroundColor(R.color.white);
+                v1.setCardBackgroundColor(getResources().getColor(R.color.yellow,getTheme()));
+                v2.setCardBackgroundColor(getResources().getColor(R.color.white,getTheme()));
                 getJoinMeetingListRequest();
                 break;
             case R.id.meeting_manageList:
-                v2.setCardBackgroundColor(R.color.yellow);
-                v1.setCardBackgroundColor(R.color.white);
+                v2.setCardBackgroundColor(getResources().getColor(R.color.yellow,getTheme()));
+                v1.setCardBackgroundColor(getResources().getColor(R.color.white,getTheme()));
                 getManageMeetingListRequest();
                 break;
         }
