@@ -1,5 +1,6 @@
 package com.example.air.facial_sign_in.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,8 +18,10 @@ import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
 import com.example.air.facial_sign_in.model.Meeting;
+import com.example.air.facial_sign_in.model.UserInfo;
 import com.example.air.facial_sign_in.util.meeting.MeetingListService;
 import com.example.air.facial_sign_in.widget.MeetingAdapter;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private MeetingAdapter mRecycleViewAdapter;
     private MyApplication application;
     private List<Meeting> meetings;
+    private String userId;
 
 
     @Override
@@ -42,14 +47,21 @@ public class MainActivity extends AppCompatActivity {
         if(!islogin){
             intent=new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);
-    }
+        }
+        else{
+            SharedPreferences prefs2 = getSharedPreferences("Userdata", MainActivity.this.MODE_PRIVATE);
+            String alluserdata = prefs2.getString("all_userdata",null);
+            Gson gson = new Gson();
+            UserInfo userinfo = gson.fromJson(alluserdata, UserInfo.class);
+            userId = userinfo.getData().getPhoneNumber();
+        }
         setContentView(R.layout.activity_main);
 //初始化线性布局管理器
         mLinearLayoutManager = new LinearLayoutManager(this);
 
         bindViews();
         try {
-            sendRequestWithHttpURLConnection();
+            getJoinMeetingListRequest();
         }catch (Exception e){
             System.out.println(e);
         }
@@ -57,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void sendRequestWithHttpURLConnection() {
+    private void getJoinMeetingListRequest() {
         //开启线程来发起网络请求
         new Thread(new Runnable() {
             @Override
@@ -66,9 +78,31 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = getIntent().getExtras();
                 String uid;
                 int type;
-                uid = "12345678_1";
                 type = 0;
-                MeetingListService r = new MeetingListService(uid,type);
+                MeetingListService r = new MeetingListService(userId,type);
+                try {
+                    meetings = r.getModel();
+                    showResponse();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }).start();
+    }
+    private void getManageMeetingListRequest() {
+        //开启线程来发起网络请求
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MeetingListService s;
+                Bundle bundle = getIntent().getExtras();
+                String uid;
+                int type;
+                type = 1;
+                MeetingListService r = new MeetingListService(userId,type);
                 try {
                     meetings = r.getModel();
                     showResponse();
@@ -109,6 +143,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindViews() {
         mRecyclerView = findViewById(R.id.meeting_containner);
+    }
+    @SuppressLint("ResourceAsColor")
+    public void onClickList(View v){
+        CardView v1 = findViewById(R.id.meeting_joinList);
+        CardView v2 = findViewById(R.id.meeting_manageList);
+        switch (v.getId()){
+            case R.id.meeting_joinList:
+                v1.setCardBackgroundColor(R.color.yellow);
+                v2.setCardBackgroundColor(R.color.white);
+                getJoinMeetingListRequest();
+                break;
+            case R.id.meeting_manageList:
+                v2.setCardBackgroundColor(R.color.yellow);
+                v1.setCardBackgroundColor(R.color.white);
+                getManageMeetingListRequest();
+                break;
+        }
+
     }
 
     private void initData() throws Exception {

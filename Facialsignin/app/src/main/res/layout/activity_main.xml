@@ -69,13 +69,16 @@
             android:layout_height="0dp"
             app:layout_heightPercent="37.5%h">
             <android.support.v7.widget.CardView
+                android:id="@+id/meeting_joinList"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 app:cardElevation="0dp"
                 app:cardCornerRadius="10dp"
                 app:layout_marginLeftPercent="5%w"
                 app:layout_marginTopPercent="1%w"
-                app:layout_widthPercent="10%w">
+                app:layout_widthPercent="10%w"
+                app:cardBackgroundColor="@color/yellow"
+                android:onClick="onClickList">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -85,6 +88,7 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/meeting_manageList"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 app:cardElevation="0dp"
@@ -92,7 +96,8 @@
                 app:layout_marginLeftPercent="2%w"
                 app:layout_marginTopPercent="1%w"
                 app:layout_widthPercent="10%w"
-                app:cardBackgroundColor="@color/yellow">
+
+                android:onClick="onClickList">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
