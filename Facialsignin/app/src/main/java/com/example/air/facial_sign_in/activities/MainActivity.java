@@ -1,5 +1,6 @@
 package com.example.air.facial_sign_in.activities;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,14 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private MeetingAdapter mRecycleViewAdapter;
-
+    private MyApplication application;
     private List<Meeting> meetings;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        application = (MyApplication)this.getApplicationContext();
         //判断登录状态
         SharedPreferences prefs = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
         Boolean islogin = prefs.getBoolean("IsLogin",false);
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         if(!islogin){
             intent=new Intent(MainActivity.this,LoginActivity.class);
             startActivity(intent);
-        }
+    }
         setContentView(R.layout.activity_main);
 //初始化线性布局管理器
         mLinearLayoutManager = new LinearLayoutManager(this);
@@ -92,8 +93,10 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(int pos) {
                         intent = new Intent(MainActivity.this,MeetingActivity.class);
-
-
+                        intent.putExtra("mid", meetings.get(pos).getMid());
+                        intent.putExtra("mname", meetings.get(pos).getMname());
+                        //Toast ts = Toast.makeText(getBaseContext(),meetings.get(pos).getMid(),Toast.LENGTH_LONG);
+                        //ts.show();
                         startActivity(intent);
                     }
                 });
@@ -136,6 +139,10 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+    public void onClickAdd(View v){
+        intent = new Intent(MainActivity.this,AddMeeting.class);
+        startActivity(intent);
     }
 
     private class TextViewListener implements View.OnClickListener {

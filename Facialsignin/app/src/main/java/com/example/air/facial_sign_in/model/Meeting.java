@@ -11,7 +11,7 @@ public class Meeting {
     private double locationX;
     private double locationY;
     private String checkrule;
-    private int StartTime;
+    private int startTime;
     private int endTime;
     private String ownnerId;
     private int sum;
@@ -93,11 +93,11 @@ public class Meeting {
     }
 
     public int getStartTime() {
-        return StartTime;
+        return startTime;
     }
 
     public void setStartTime(int startTime) {
-        StartTime = startTime;
+        this.startTime = startTime;
     }
 
     public int getEndTime() {
@@ -129,6 +129,21 @@ public class Meeting {
     }
 
     public void setSum(int sum) {
+        this.sum = sum;
+    }
+
+    public Meeting(String mcover, String mname, String mid, String createTime, String locationDiscribe, double locationX, double locationY, String checkrule, int startTime, int endTime, String ownnerId, int sum) {
+        this.mcover = mcover;
+        this.mname = mname;
+        this.mid = mid;
+        this.createTime = createTime;
+        this.locationDiscribe = locationDiscribe;
+        this.locationX = locationX;
+        this.locationY = locationY;
+        this.checkrule = checkrule;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.ownnerId = ownnerId;
         this.sum = sum;
     }
 }

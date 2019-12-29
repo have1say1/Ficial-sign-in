@@ -4,15 +4,21 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.air.facial_sign_in.R;
 
 public class MeetingActivity extends AppCompatActivity {
     private Intent intent;
+    private TextView title;
+    private MyApplication application;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meeting);
+        title = (TextView) findViewById(R.id.meeting_title);
+        intent = getIntent();
+        title.setText(intent.getStringExtra("mname"));
     }
     public void onClickDaka(View v){
         // TODO Auto-generated method stub
