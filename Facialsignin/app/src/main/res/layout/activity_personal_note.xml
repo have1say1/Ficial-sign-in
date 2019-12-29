@@ -47,36 +47,40 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Dec.12"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="Dec.30"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="18sp"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="15dp"
-                app:layout_heightPercent="7%w"/>
+                app:layout_heightPercent="7%w" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2条"
-                android:textSize="14sp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:layout_marginBottom="10dp"/>
+                android:text="1条"
+                android:textSize="14sp" />
             <com.zhy.android.percent.support.PercentLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/cardview_light_background"
                 android:gravity="center_vertical"
                 app:layout_heightPercent="20%w">
+
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:src="@drawable/tx4"
                     app:layout_heightPercent="80%h"
                     app:layout_widthPercent="130%h"
-                    android:src="@drawable/head"/>
+                    app:srcCompat="@drawable/tx4" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -101,85 +105,6 @@
                 android:layout_gravity="center"
                 android:background="#E4E4E4"
                 app:layout_widthPercent="90%w" />
-            <com.zhy.android.percent.support.PercentLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/cardview_light_background"
-                android:gravity="center_vertical"
-                app:layout_heightPercent="20%w">
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    app:layout_heightPercent="80%h"
-                    app:layout_widthPercent="130%h"
-                    android:src="@drawable/head"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name"
-                        android:textSize="18sp"
-                        android:textColor="@color/cardview_dark_background"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="签出"
-                        android:textColor="@color/grey" />
-                </LinearLayout>
-
-            </com.zhy.android.percent.support.PercentLinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dec.11"
-                android:textColor="@color/cardview_dark_background"
-                android:textSize="18sp"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="15dp"
-                app:layout_heightPercent="7%w"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="2条"
-                android:textSize="14sp"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:layout_marginBottom="10dp"/>
-            <com.zhy.android.percent.support.PercentLinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/cardview_light_background"
-                android:gravity="center_vertical"
-                app:layout_heightPercent="20%w">
-                <android.support.v7.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    app:layout_heightPercent="80%h"
-                    app:layout_widthPercent="130%h"
-                    android:src="@drawable/head"/>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/name"
-                        android:textSize="18sp"
-                        android:textColor="@color/cardview_dark_background"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="签到"
-                        android:textColor="@color/grey"/>
-                </LinearLayout>
-
-            </com.zhy.android.percent.support.PercentLinearLayout>
 
 
         </com.zhy.android.percent.support.PercentLinearLayout>

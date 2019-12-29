@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Facial-sign-in</string>
-    <string name="name">用户姓名</string>
+    <string name="name">贾丽春</string>
     <string name="cus_name1">用户123</string>
     <string name="title_activity_note">NoteActivity</string>
     <string name="title_home">Home</string>

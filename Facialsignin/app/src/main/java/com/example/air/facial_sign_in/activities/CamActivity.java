@@ -699,6 +699,7 @@ public class CamActivity extends BaseActivity implements ViewTreeObserver.OnGlob
                                 adapter.notifyItemInserted(compareResultList.size() - 1);
                             }
                             requestFeatureStatusMap.put(requestId, RequestFeatureStatus.SUCCEED);
+                            //faceHelper.setName(requestId, getString(R.string.recognize_success_notice, compareResult.getUserName()));
                             faceHelper.setName(requestId, getString(R.string.recognize_success_notice, compareResult.getUserName()));
 
                         } else {

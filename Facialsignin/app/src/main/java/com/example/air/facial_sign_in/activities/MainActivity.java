@@ -139,6 +139,9 @@ public class MainActivity extends AppCompatActivity {
                 });
                 //设置适配器
                 mRecyclerView.setAdapter(mRecycleViewAdapter);
+                if(meetings.size() != 0){
+                    mRecyclerView.setVisibility(mRecyclerView.VISIBLE);
+                }
 
             }
         });

@@ -141,13 +141,14 @@
                         android:layout_height="wrap_content"
                         android:text="地&#12288;&#12288;址"
                         android:textSize="16sp" />
+
                     <EditText
                         android:id="@+id/add_meeting_place"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint=""
-                        android:textColorHint="@color/white" />
+                        android:hint="北京大学软件与微电子学院3号楼3302"
+                        android:textColorHint="@color/grey" />
 
 
                 </LinearLayout>

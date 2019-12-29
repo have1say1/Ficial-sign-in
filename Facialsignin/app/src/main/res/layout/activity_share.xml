@@ -69,7 +69,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/touxiang"
+                    android:src="@drawable/tx4"
                     app:layout_heightPercent="23%w"
                     app:layout_widthPercent="23%w" />
 
