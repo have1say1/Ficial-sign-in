@@ -53,6 +53,8 @@
         <activity android:name=".activities.SettingActivity" />
         <activity android:name=".activities.PersonStatisticsActivity" />
         <activity android:name=".activities.GroupStatisticsActivity" />
+        <activity android:name=".activities.PersonStatisticsActivity1" />
+        <activity android:name=".activities.GroupStatisticsActivity1" />
         <activity android:name=".activities.ChooseFunctionActivity" />
 
         <provider

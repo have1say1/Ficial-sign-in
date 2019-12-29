@@ -30,7 +30,7 @@ public class MeetingActivity extends AppCompatActivity {
                 break;
 
             case R.id.daka_static:
-                intent = new Intent(MeetingActivity.this, StaticActivity.class);
+                intent = new Intent(MeetingActivity.this, PersonStatisticsActivity.class);
                 startActivity(intent);
                 System.out.println("3");
                 break;

@@ -37,7 +37,7 @@ import lecho.lib.hellocharts.view.ColumnChartView;
 import lecho.lib.hellocharts.view.LineChartView;
 import lecho.lib.hellocharts.model.Column;
 
-public class GroupStatisticsActivity extends Activity {
+public class GroupStatisticsActivity1 extends Activity {
     Intent intent;
 
     private LineChartView lineChart;
@@ -48,7 +48,7 @@ public class GroupStatisticsActivity extends Activity {
     /*========== 数据相关 ==========*/
     private ColumnChartData mColumnChartData;               //柱状图数据
     public final static String[] xValues = new String[]{"正常", "迟到", "早退", "缺席", "请假"};
-    public final static int[] yValues = new int[]{7, 2, 0, 1, 0};
+    public final static int[] yValues = new int[]{7, 0, 0, 3, 0};
 
     //折线图
     String[] date = {"周一","周二","周三","周四","周五","周六","周日"};//X轴的标注
@@ -59,7 +59,7 @@ public class GroupStatisticsActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_group_attendance_statistics);
+        setContentView(R.layout.activity_group_attendance_statistics1);
         //折线图
         getAxisXLables();//获取x轴的标注
         getAxisPoints();//获取坐标点
@@ -73,7 +73,7 @@ public class GroupStatisticsActivity extends Activity {
         // TODO Auto-generated method stub
         switch (v.getId()) {
             case R.id.person_statistics:
-                intent = new Intent(GroupStatisticsActivity.this,PersonStatisticsActivity.class);
+                intent = new Intent(GroupStatisticsActivity1.this,PersonStatisticsActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -88,7 +88,7 @@ public class GroupStatisticsActivity extends Activity {
      * 初始化LineChart的一些设置
      */
     private void initLineChart(){
-        lineChart = (LineChartView)findViewById(R.id.group_chart1);
+        lineChart = (LineChartView)findViewById(R.id.group_chart3);
         lineChart.setOnValueTouchListener(new ValueTouchListener0());
         Line line = new Line(mPointValues).setColor(Color.parseColor("#FFCD41"));  //折线的颜色
         List<Line> lines = new ArrayList<Line>();
@@ -169,8 +169,8 @@ public class GroupStatisticsActivity extends Activity {
 
         @Override
         public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
-            intent = new Intent(GroupStatisticsActivity.this,GroupStatisticsActivity1.class);
-            startActivity(intent);
+//            intent = new Intent(GroupStatisticsActivity1.this,GroupStatisticsActivity1.class);
+//            startActivity(intent);
             //Toast.makeText(PersonStatisticsActivity.this, "Selected: " + value, Toast.LENGTH_SHORT).show();
         }
 
@@ -186,7 +186,7 @@ public class GroupStatisticsActivity extends Activity {
     ////////////////////////////////////折线图////////////////////////////////////////
 ////////////////////////////////////柱状图////////////////////////////////////////
     private void initView() {
-        mColumnChartView = (ColumnChartView) findViewById(R.id.group_chart2);
+        mColumnChartView = (ColumnChartView) findViewById(R.id.group_chart4);
         mColumnChartView.setOnValueTouchListener(new ValueTouchListener());
 
         /*========== 柱状图数据填充 ==========*/
@@ -242,7 +242,7 @@ public class GroupStatisticsActivity extends Activity {
 
         @Override
         public void onValueSelected(int columnIndex, int subcolumnIndex, SubcolumnValue value) {
-            Toast.makeText(GroupStatisticsActivity.this, xValues[columnIndex]+"人数 : " +
+            Toast.makeText(GroupStatisticsActivity1.this, xValues[columnIndex]+"人数 : " +
                     (int)value.getValue(),Toast.LENGTH_SHORT).show();
         }
 

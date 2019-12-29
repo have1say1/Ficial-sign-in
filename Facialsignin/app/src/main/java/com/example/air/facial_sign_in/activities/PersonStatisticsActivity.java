@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
 
@@ -17,22 +20,39 @@ import java.util.Random;
 
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
 import lecho.lib.hellocharts.gesture.ZoomType;
+import lecho.lib.hellocharts.listener.ColumnChartOnValueSelectListener;
+import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.AxisValue;
+import lecho.lib.hellocharts.model.ColumnChartData;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.SubcolumnValue;
 import lecho.lib.hellocharts.model.ValueShape;
 import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.util.ChartUtils;
+import lecho.lib.hellocharts.view.Chart;
+import lecho.lib.hellocharts.view.ColumnChartView;
 import lecho.lib.hellocharts.view.LineChartView;
+import lecho.lib.hellocharts.model.Column;
 
     public class PersonStatisticsActivity extends Activity {
         Intent intent;
 
         private LineChartView lineChart;
 
-        String[] date = {"周一","周二","周三","周四","周五","周六","周日"};//X轴的标注
-        int[] score= {0,1,2,0,2,0,1};//图表的数据
+        private ColumnChartView mColumnChartView;
+
+        //柱状图
+        /*========== 数据相关 ==========*/
+        private ColumnChartData mColumnChartData;               //柱状图数据
+        public final static String[] xValues = new String[]{"正常", "迟到", "早退", "缺席", "请假"};
+        public final static int[] yValues = new int[]{4, 0, 2, 1, 0};
+
+        //折线图
+        String[] date = {"01-07","08-14","15-21","22-28","29-31"};//X轴的标注
+        public final static int[] score= {0,5,3,7,4};//图表的数据
         private List<PointValue> mPointValues = new ArrayList<PointValue>();
         private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
 
@@ -40,10 +60,13 @@ import lecho.lib.hellocharts.view.LineChartView;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_person_attendance_statistics);
-            lineChart = (LineChartView)findViewById(R.id.line_chart);
+            //折线图
             getAxisXLables();//获取x轴的标注
             getAxisPoints();//获取坐标点
             initLineChart();//初始化
+
+            //柱状图
+            initView();
         }
 
         public void onClick(View v) {
@@ -56,10 +79,17 @@ import lecho.lib.hellocharts.view.LineChartView;
             }
         }
 
+        public void onClickBack(View v) {
+            // TODO Auto-generated method stub
+            this.finish();
+        }
+///////////////////////////////////折线图////////////////////////////////////
         /**
          * 初始化LineChart的一些设置
          */
         private void initLineChart(){
+            lineChart = (LineChartView)findViewById(R.id.chart1);
+            lineChart.setOnValueTouchListener(new ValueTouchListener0());
             Line line = new Line(mPointValues).setColor(Color.parseColor("#FFCD41"));  //折线的颜色
             List<Line> lines = new ArrayList<Line>();
             line.setShape(ValueShape.CIRCLE);//折线图上每个数据点的形状  这里是圆形 （有三种 ：ValueShape.SQUARE  ValueShape.CIRCLE  ValueShape.SQUARE）
@@ -80,7 +110,8 @@ import lecho.lib.hellocharts.view.LineChartView;
 //	        axisX.setTextColor(Color.WHITE);  //设置字体颜色
             axisX.setTextColor(Color.parseColor("#D6D6D9"));//灰色
 //	        axisX.setName("未来几天的天气");  //表格名称
-            axisX.setTextSize(11);//设置字体大小
+            axisX.setTextColor(Color.GRAY);// 设置X轴文字颜色
+            axisX.setTextSize(14);// 设置X轴文字大小
             axisX.setMaxLabelChars(7); //最多几个X轴坐标，意思就是你的缩放让X轴上数据的个数7<=x<=mAxisValues.length
             axisX.setValues(mAxisXValues);  //填充X轴的坐标名称
             data.setAxisXBottom(axisX); //x 轴在底部
@@ -90,7 +121,8 @@ import lecho.lib.hellocharts.view.LineChartView;
 
             Axis axisY = new Axis();  //Y轴
             axisY.setName("");//y轴标注
-            axisY.setTextSize(11);//设置字体大小
+            axisY.setTextColor(Color.GRAY);// 设置Y轴文字颜色
+            axisY.setTextSize(14);//设置字体大小
             data.setAxisYLeft(axisY);  //Y轴设置在左边
             //data.setAxisYRight(axisY);  //y轴设置在右边
             //设置行为属性，支持缩放、滑动以及平移
@@ -132,4 +164,94 @@ import lecho.lib.hellocharts.view.LineChartView;
                 mPointValues.add(new PointValue(i, score[i]));
             }
         }
+
+        private class ValueTouchListener0 implements LineChartOnValueSelectListener {
+
+            @Override
+            public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
+                intent = new Intent(PersonStatisticsActivity.this,PersonStatisticsActivity1.class);
+                startActivity(intent);
+                //Toast.makeText(PersonStatisticsActivity.this, "Selected: " + value, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onValueDeselected() {
+                // TODO Auto-generated method stub
+
+            }
+
+        }
+
+
+////////////////////////////////////折线图////////////////////////////////////////
+////////////////////////////////////柱状图////////////////////////////////////////
+        private void initView() {
+            mColumnChartView = (ColumnChartView) findViewById(R.id.chart2);
+            mColumnChartView.setOnValueTouchListener(new ValueTouchListener());
+
+            /*========== 柱状图数据填充 ==========*/
+            List<Column> columnList = new ArrayList<>(); //柱子列表
+            List<SubcolumnValue> subcolumnValueList;     //子柱列表（即一个柱子，因为一个柱子可分为多个子柱）
+            List<AxisValue> axisValues = new ArrayList<>();
+            for (int i = 0; i < xValues.length; ++i) {
+                subcolumnValueList = new ArrayList<>();
+                subcolumnValueList.add(new SubcolumnValue(yValues[i], ChartUtils.pickColor()));
+
+                Column column = new Column(subcolumnValueList);
+                column.setHasLabels(true);                    //设置列标签
+        //            column.setHasLabelsOnlyForSelected(true);       //只有当点击时才显示列标签
+
+                columnList.add(column);
+
+                //设置坐标值
+                axisValues.add(new AxisValue(i).setLabel(xValues[i]));
+            }
+
+            mColumnChartData = new ColumnChartData(columnList);               //设置数据
+
+
+            /*===== 坐标轴相关设置 =====*/
+            Axis axisX = new Axis(axisValues); //将自定义x轴显示值传入构造函数
+            Axis axisY = new Axis().setHasLines(true); //setHasLines是设置线条
+            axisX.setName("");    //设置横轴名称
+            axisY.setName("");    //设置竖轴名称
+            axisX.setTextColor(Color.GRAY);// 设置X轴文字颜色
+            axisY.setTextColor(Color.GRAY);// 设置Y轴文字颜色
+            axisX.setTextSize(14);// 设置X轴文字大小
+
+            mColumnChartData.setAxisXBottom(axisX); //设置横轴
+            mColumnChartData.setAxisYLeft(axisY);   //设置竖轴
+
+            //以上所有设置的数据、坐标配置都已存放到mColumnChartData中，接下来给mColumnChartView设置这些配置
+            mColumnChartView.setColumnChartData(mColumnChartData);
+
+
+            /*===== 设置竖轴最大值 =====*/
+            //法一：
+            Viewport v = mColumnChartView.getMaximumViewport();
+            v.top = 6;
+            mColumnChartView.setCurrentViewport(v);
+                /*法二：
+                Viewport v = mColumnChartView.getCurrentViewport();
+                v.top = 100;
+                mColumnChartView.setMaximumViewport(v);
+                mColumnChartView.setCurrentViewport(v);*/
+        }
+
+        private class ValueTouchListener implements ColumnChartOnValueSelectListener {
+
+            @Override
+            public void onValueSelected(int columnIndex, int subcolumnIndex, SubcolumnValue value) {
+                Toast.makeText(PersonStatisticsActivity.this, xValues[columnIndex]+"人数 : " +
+                        (int)value.getValue(),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onValueDeselected() {
+                // TODO Auto-generated method stub
+            }
+        }
+////////////////////////////////////柱状图////////////////////////////////////////
+
+
     }
