@@ -11,13 +11,14 @@
         android:layout_height="wrap_content"
         android:background="@color/cardview_light_background"
         app:layout_heightPercent="10%h">
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="12dp"
             android:layout_gravity="center"
-            android:text="个人记录"
-            android:textSize="18sp"
-            android:textColor="@color/cardview_dark_background"/>
+            android:text="团队统计"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

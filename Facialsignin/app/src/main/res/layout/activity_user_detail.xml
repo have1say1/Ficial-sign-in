@@ -39,7 +39,7 @@
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@drawable/touxiang2"
+                            android:src="@drawable/tx4"
                             app:layout_heightPercent="20%w"
                             app:layout_widthPercent="20%w" />
 
