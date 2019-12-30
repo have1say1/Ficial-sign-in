@@ -68,7 +68,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="移动平台应用软件开发"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="30sp"
                         app:layout_marginTopPercent="3%h" />
@@ -224,7 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical"
-                    android:text="移动平台应用软件开发" />
+                    android:text="移动应用开发" />
             </com.zhy.android.percent.support.PercentFrameLayout>
 
             <ImageView
