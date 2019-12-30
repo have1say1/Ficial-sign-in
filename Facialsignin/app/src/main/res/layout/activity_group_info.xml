@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="课程信息"
+                android:text="会议信息"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="20sp"
                 app:layout_widthPercent="78%w" />
@@ -105,16 +105,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="课程成员"
+                    android:text="会议成员"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
-                    app:layout_widthPercent="20%w"
+                    app:layout_widthPercent="25%w"
                     android:layout_gravity="right|center_vertical"/>
 
                 <com.zhy.android.percent.support.PercentFrameLayout
                     android:layout_width="10dp"
                     android:layout_height="match_parent"
-                    app:layout_widthPercent="69%w"
+                    app:layout_widthPercent="66%w"
                     app:layout_marginTopPercent="4%h">
 
                     <TextView
@@ -213,7 +213,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="课程名称"
+                android:text="会议名称"
                 android:textSize="18dp"
                 android:textColor="@color/colorPrimary"
                 app:layout_marginLeftPercent="4%w"
@@ -228,7 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical"
-                    android:text="移动应用开发" />
+                    android:text="移动开发课程" />
             </com.zhy.android.percent.support.PercentFrameLayout>
 
             <ImageView
@@ -302,7 +302,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical"
-                    android:text="北京大学软件与微电子学院3号楼" />
+                    android:text="软件与微电子学院" />
             </com.zhy.android.percent.support.PercentFrameLayout>
 
             <ImageView

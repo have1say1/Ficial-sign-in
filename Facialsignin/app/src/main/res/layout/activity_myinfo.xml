@@ -84,7 +84,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_gravity="right|center_vertical"
-                        android:src="@drawable/touxiang"
+                        android:src="@drawable/tx4"
                         app:layout_heightPercent="19%w"
                         app:layout_widthPercent="19%w" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
@@ -125,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center_vertical"
-                        android:text="15631423412" />
+                        android:text="15211236489" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
@@ -158,7 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center_vertical"
-                        android:text="王大柱" />
+                        android:text="贾丽春" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
@@ -191,7 +191,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center_vertical"
-                        android:text="男" />
+                        android:text="女" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
@@ -224,7 +224,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center_vertical"
-                        android:text="北京大学软件与微电子学院" />
+                        android:text="软件与微电子学院" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
