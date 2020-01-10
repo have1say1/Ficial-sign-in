@@ -1,6 +1,7 @@
 package com.example.air.facial_sign_in.activities;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
@@ -21,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
+import android.content.SharedPreferences;
 
 import com.arcsoft.face.ActiveFileInfo;
 import com.arcsoft.face.AgeInfo;
@@ -798,6 +800,14 @@ public class RegisterAndRecognizeActivity extends BaseActivity implements ViewTr
                             }
                             requestFeatureStatusMap.put(requestId, RequestFeatureStatus.SUCCEED);
                             faceHelper.setName(requestId, getString(R.string.recognize_success_notice, compareResult.getUserName()));
+
+                            SharedPreferences prefs = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
+                            String meetingid = prefs.getString("meetingid",null);
+                            SharedPreferences mSharedPreferences = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = mSharedPreferences.edit();
+                            editor.putInt(meetingid,1);
+                            editor.apply();
+
                             Intent intent=new Intent(RegisterAndRecognizeActivity.this,PersonalNoteActivity.class);
                             startActivity(intent);
                             Toast ts = Toast.makeText(getBaseContext(),"识别成功",Toast.LENGTH_LONG);

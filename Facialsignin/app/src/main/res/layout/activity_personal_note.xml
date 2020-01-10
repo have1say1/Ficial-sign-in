@@ -56,51 +56,60 @@
                 android:layout_marginTop="15dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="Dec.30"
+                android:text="Jan.10"
                 android:textColor="@color/cardview_dark_background"
                 android:textSize="18sp"
                 app:layout_heightPercent="7%w" />
 
             <TextView
+                android:id="@+id/qdnum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="1条"
+                android:text=""
                 android:textSize="14sp" />
+
             <com.zhy.android.percent.support.PercentLinearLayout
+                android:id="@+id/kejian"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/cardview_light_background"
                 android:gravity="center_vertical"
+                android:visibility="invisible"
                 app:layout_heightPercent="20%w">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:src="@drawable/tx4"
+                    android:src="@drawable/default_ava"
                     app:layout_heightPercent="80%h"
                     app:layout_widthPercent="130%h"
                     app:srcCompat="@drawable/tx4" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/name"
-                        android:textSize="18sp"
-                        android:textColor="@color/cardview_dark_background"/>
+                        android:text=""
+                        android:textColor="@color/cardview_dark_background"
+                        android:textSize="18sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="签到"
-                        android:textColor="@color/grey"/>
+                        android:textColor="@color/grey" />
                 </LinearLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
+
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
