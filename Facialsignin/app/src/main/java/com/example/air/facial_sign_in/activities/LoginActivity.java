@@ -107,6 +107,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 editor.putString("username", userinfo.getData().getUserName());
                                 editor.putString("userid", userinfo.getData().getPhoneNumber());
                                 editor.putString("userface", userinfo.getData().getFace());
+                                editor.putInt("usersex", userinfo.getData().getSex());
                                 editor.putBoolean("IsLogin",true);
                                 editor.apply();
 

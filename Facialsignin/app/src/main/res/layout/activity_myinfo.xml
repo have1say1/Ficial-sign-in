@@ -84,7 +84,7 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_gravity="right|center_vertical"
-                        android:src="@drawable/tx4"
+                        android:src="@drawable/default_ava"
                         app:layout_heightPercent="19%w"
                         app:layout_widthPercent="19%w" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
@@ -122,10 +122,10 @@
                     app:layout_widthPercent="72%w">
 
                     <TextView
+                        android:id="@+id/user_setting_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
-                        android:text="15211236489" />
+                        android:layout_gravity="right|center_vertical" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
@@ -155,10 +155,10 @@
                     app:layout_widthPercent="72%w">
 
                     <TextView
+                        android:id="@+id/user_setting_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
-                        android:text="贾丽春" />
+                        android:layout_gravity="right|center_vertical" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>
@@ -188,10 +188,10 @@
                     app:layout_widthPercent="72%w">
 
                     <TextView
+                        android:id="@+id/user_setting_sex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right|center_vertical"
-                        android:text="女" />
+                        android:layout_gravity="right|center_vertical" />
                 </com.zhy.android.percent.support.PercentFrameLayout>
 
             </com.zhy.android.percent.support.PercentLinearLayout>

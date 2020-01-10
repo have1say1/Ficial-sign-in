@@ -132,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
                         intent = new Intent(MainActivity.this,MeetingActivity.class);
                         intent.putExtra("mid", meetings.get(pos).getMid());
                         intent.putExtra("mname", meetings.get(pos).getMname());
+                        SharedPreferences mSharedPreferences = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = mSharedPreferences.edit();
+                        editor.putString("meetingid", meetings.get(pos).getMid());
+                        editor.apply();
                         //Toast ts = Toast.makeText(getBaseContext(),meetings.get(pos).getMid(),Toast.LENGTH_LONG);
                         //ts.show();
                         startActivity(intent);
