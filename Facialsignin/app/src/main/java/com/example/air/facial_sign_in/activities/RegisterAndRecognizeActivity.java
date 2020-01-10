@@ -2,6 +2,7 @@ package com.example.air.facial_sign_in.activities;
 
 import android.Manifest;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Point;
 import android.hardware.Camera;
 import android.os.Build;
@@ -19,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import com.arcsoft.face.ActiveFileInfo;
 import com.arcsoft.face.AgeInfo;
 import com.arcsoft.face.ErrorInfo;
 import com.arcsoft.face.FaceEngine;
@@ -28,7 +30,9 @@ import com.arcsoft.face.LivenessInfo;
 import com.arcsoft.face.VersionInfo;
 import com.arcsoft.face.enums.DetectFaceOrientPriority;
 import com.arcsoft.face.enums.DetectMode;
+import com.arcsoft.face.enums.RuntimeABI;
 import com.example.air.facial_sign_in.R;
+import com.example.air.facial_sign_in.common.Constants;
 import com.example.air.facial_sign_in.faceserver.CompareResult;
 import com.example.air.facial_sign_in.faceserver.FaceServer;
 import com.example.air.facial_sign_in.model.DrawInfo;
@@ -46,6 +50,7 @@ import com.example.air.facial_sign_in.util.face.RequestLivenessStatus;
 import com.example.air.facial_sign_in.widget.FaceRectView;
 import com.example.air.facial_sign_in.widget.FaceSearchResultAdapter;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -61,6 +66,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.arcsoft.face.enums.DetectFaceOrientPriority.ASF_OP_ALL_OUT;
 
 public class RegisterAndRecognizeActivity extends BaseActivity implements ViewTreeObserver.OnGlobalLayoutListener {
     private static final String TAG = "RegisterAndRecognize";
@@ -166,11 +173,29 @@ public class RegisterAndRecognizeActivity extends BaseActivity implements ViewTr
             Manifest.permission.READ_PHONE_STATE
 
     };
+    boolean libraryExists = true;
+    // Demo 所需的动态库文件
+    private static final String[] LIBRARIES = new String[]{
+            // 人脸相关
+            "libarcsoft_face_engine.so",
+            "libarcsoft_face.so",
+            // 图像库相关
+            "libarcsoft_image_util.so",
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_and_recognize);
+        libraryExists = checkSoFile(LIBRARIES);
+        ApplicationInfo applicationInfo = getApplicationInfo();
+        Log.i(TAG, "onCreate: " + applicationInfo.nativeLibraryDir);
+        if (!libraryExists) {
+            showToast(getString(R.string.library_not_found));
+        } else {
+            ConfigUtil.setFtOrient(RegisterAndRecognizeActivity.this, ASF_OP_ALL_OUT);
+            activeEngine();
+        }
         //保持亮屏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -180,12 +205,86 @@ public class RegisterAndRecognizeActivity extends BaseActivity implements ViewTr
             getWindow().setAttributes(attributes);
         }
 
+
+
         // Activity启动后就锁定为启动时的方向
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         //本地人脸库初始化
         FaceServer.getInstance().init(this);
 
         initView();
+
+    }
+    private boolean checkSoFile(String[] libraries) {
+        File dir = new File(getApplicationInfo().nativeLibraryDir);
+        File[] files = dir.listFiles();
+        if (files == null || files.length == 0) {
+            return false;
+        }
+        List<String> libraryNameList = new ArrayList<>();
+        for (File file : files) {
+            libraryNameList.add(file.getName());
+        }
+        boolean exists = true;
+        for (String library : libraries) {
+            exists &= libraryNameList.contains(library);
+        }
+        return exists;
+    }
+    public void activeEngine() {
+        if (!libraryExists) {
+            showToast(getString(R.string.library_not_found));
+            return;
+        }
+        if (!checkPermissions(NEEDED_PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, NEEDED_PERMISSIONS, ACTION_REQUEST_PERMISSIONS);
+            return;
+        }
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> emitter) {
+                RuntimeABI runtimeABI = FaceEngine.getRuntimeABI();
+                Log.i(TAG, "subscribe: getRuntimeABI() " + runtimeABI);
+                int activeCode = FaceEngine.activeOnline(RegisterAndRecognizeActivity.this,  Constants.APP_ID, Constants.SDK_KEY);
+                emitter.onNext(activeCode);
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Integer activeCode) {
+                        if (activeCode == ErrorInfo.MOK) {
+                            showToast(getString(R.string.active_success));
+                        } else if (activeCode == ErrorInfo.MERR_ASF_ALREADY_ACTIVATED) {
+                            showToast(getString(R.string.already_activated));
+                        } else {
+                            showToast(getString(R.string.active_failed, activeCode));
+                        }
+
+                        ActiveFileInfo activeFileInfo = new ActiveFileInfo();
+                        int res = FaceEngine.getActiveFileInfo(RegisterAndRecognizeActivity.this, activeFileInfo);
+                        if (res == ErrorInfo.MOK) {
+                            Log.i(TAG, activeFileInfo.toString());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showToast(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
     private void initView() {

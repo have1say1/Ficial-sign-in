@@ -40,30 +40,6 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <Button
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="activeEngine"
-            android:text="@string/active_engine" />
-
-        <Button
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/page_single_image" />
-
-        <Button
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/page_preview" />
-
-        <Button
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/page_multi_image" />
 
 
         <Button
@@ -73,17 +49,6 @@
             android:onClick="jumpToFaceRecognizeActivity"
             android:text="@string/page_face_recognize" />
 
-        <Button
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/page_ir_face_recognize" />
-
-        <Button
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/page_face_manage" />
     </LinearLayout>
 
 </RelativeLayout>
