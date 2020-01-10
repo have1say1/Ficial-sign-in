@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                         editor.putString("meetingid", meetings.get(pos).getMid());
                         editor.putString("meetingname", meetings.get(pos).getMname());
                         editor.putString("meetinglocation", meetings.get(pos).getLocationDiscribe());
-                        Log.d("qqq",meetings.get(pos).getLocationDiscribe());
+//                        Log.d("qqq",meetings.get(pos).getLocationDiscribe());
                         editor.apply();
                         //Toast ts = Toast.makeText(getBaseContext(),meetings.get(pos).getMid(),Toast.LENGTH_LONG);
                         //ts.show();
