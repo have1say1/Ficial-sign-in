@@ -45,7 +45,7 @@ public class MeetingActivity extends AppCompatActivity {
                 System.out.println("4");
                 break;
             case R.id.cam:
-                intent = new Intent(MeetingActivity.this, ChooseFunctionActivity.class);
+                intent = new Intent(MeetingActivity.this, RegisterAndRecognizeActivity.class);
                 startActivity(intent);
                 System.out.println("4");
                 break;

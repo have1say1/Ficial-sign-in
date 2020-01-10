@@ -65,6 +65,8 @@ public class ChooseFunctionActivity extends BaseActivity {
             showToast(getString(R.string.library_not_found));
         } else {
             initView();
+            activeEngine();
+            checkLibraryAndJump(RegisterAndRecognizeActivity.class);
         }
     }
 
@@ -93,53 +95,7 @@ public class ChooseFunctionActivity extends BaseActivity {
 
     private void initView() {
         //设置视频模式下的人脸优先检测方向
-        RadioGroup radioGroupFtOrient = findViewById(R.id.radio_group_ft_orient);
-        RadioButton rbOrient0 = findViewById(R.id.rb_orient_0);
-        RadioButton rbOrient90 = findViewById(R.id.rb_orient_90);
-        RadioButton rbOrient180 = findViewById(R.id.rb_orient_180);
-        RadioButton rbOrient270 = findViewById(R.id.rb_orient_270);
-        RadioButton rbOrientAll = findViewById(R.id.rb_orient_all);
-        switch (ConfigUtil.getFtOrient(this)) {
-            case ASF_OP_90_ONLY:
-                rbOrient90.setChecked(true);
-                break;
-            case ASF_OP_180_ONLY:
-                rbOrient180.setChecked(true);
-                break;
-            case ASF_OP_270_ONLY:
-                rbOrient270.setChecked(true);
-                break;
-            case ASF_OP_ALL_OUT:
-                rbOrientAll.setChecked(true);
-                break;
-            case ASF_OP_0_ONLY:
-            default:
-                rbOrient0.setChecked(true);
-                break;
-        }
-        radioGroupFtOrient.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rb_orient_90:
-                        ConfigUtil.setFtOrient(ChooseFunctionActivity.this, ASF_OP_90_ONLY);
-                        break;
-                    case R.id.rb_orient_180:
-                        ConfigUtil.setFtOrient(ChooseFunctionActivity.this, ASF_OP_180_ONLY);
-                        break;
-                    case R.id.rb_orient_270:
-                        ConfigUtil.setFtOrient(ChooseFunctionActivity.this, ASF_OP_270_ONLY);
-                        break;
-                    case R.id.rb_orient_all:
-                        ConfigUtil.setFtOrient(ChooseFunctionActivity.this, ASF_OP_ALL_OUT);
-                        break;
-                    case R.id.rb_orient_0:
-                    default:
-                        ConfigUtil.setFtOrient(ChooseFunctionActivity.this, ASF_OP_0_ONLY);
-                        break;
-                }
-            }
-        });
+        ConfigUtil.setFtOrient(ChooseFunctionActivity.this, ASF_OP_ALL_OUT);
     }
 
     /**
@@ -217,6 +173,61 @@ public class ChooseFunctionActivity extends BaseActivity {
                         if (view != null) {
                             view.setClickable(true);
                         }
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+    public void activeEngine() {
+        if (!libraryExists) {
+            showToast(getString(R.string.library_not_found));
+            return;
+        }
+        if (!checkPermissions(NEEDED_PERMISSIONS)) {
+            ActivityCompat.requestPermissions(this, NEEDED_PERMISSIONS, ACTION_REQUEST_PERMISSIONS);
+            return;
+        }
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> emitter) {
+                RuntimeABI runtimeABI = FaceEngine.getRuntimeABI();
+                Log.i(TAG, "subscribe: getRuntimeABI() " + runtimeABI);
+                int activeCode = FaceEngine.activeOnline(ChooseFunctionActivity.this,  Constants.APP_ID, Constants.SDK_KEY);
+                emitter.onNext(activeCode);
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Integer activeCode) {
+                        if (activeCode == ErrorInfo.MOK) {
+                            showToast(getString(R.string.active_success));
+                        } else if (activeCode == ErrorInfo.MERR_ASF_ALREADY_ACTIVATED) {
+                            showToast(getString(R.string.already_activated));
+                        } else {
+                            showToast(getString(R.string.active_failed, activeCode));
+                        }
+
+                        ActiveFileInfo activeFileInfo = new ActiveFileInfo();
+                        int res = FaceEngine.getActiveFileInfo(ChooseFunctionActivity.this, activeFileInfo);
+                        if (res == ErrorInfo.MOK) {
+                            Log.i(TAG, activeFileInfo.toString());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showToast(e.getMessage());
                     }
 
                     @Override
