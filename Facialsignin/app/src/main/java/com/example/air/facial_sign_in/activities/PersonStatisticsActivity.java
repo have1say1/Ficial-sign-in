@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
@@ -37,9 +38,15 @@ import lecho.lib.hellocharts.view.ColumnChartView;
 import lecho.lib.hellocharts.view.LineChartView;
 import lecho.lib.hellocharts.model.Column;
 
-    public class PersonStatisticsActivity extends Activity {
+import java.util.*;
+
+public class PersonStatisticsActivity extends Activity {
         Intent intent;
 
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
         private LineChartView lineChart;
 
         private ColumnChartView mColumnChartView;
@@ -52,6 +59,7 @@ import lecho.lib.hellocharts.model.Column;
 
         //折线图
         String[] date = {"01-07","08-14","15-21","22-28","29-31"};//X轴的标注
+        String[] date2 = {"01-07","08-14","15-21","22-28","29"};//X轴的标注
         public final static int[] score= {0,5,3,7,4};//图表的数据
         private List<PointValue> mPointValues = new ArrayList<PointValue>();
         private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
@@ -63,10 +71,13 @@ import lecho.lib.hellocharts.model.Column;
             //折线图
             getAxisXLables();//获取x轴的标注
             getAxisPoints();//获取坐标点
+            dateshow();
             initLineChart();//初始化
 
             //柱状图
             initView();
+
+
         }
 
         public void onClick(View v) {
@@ -146,14 +157,40 @@ import lecho.lib.hellocharts.model.Column;
             v.left = 0;
             v.right= 7;
             lineChart.setCurrentViewport(v);
+
+
+        }
+
+        /**
+         * 日期的显示
+         */
+        private void dateshow(){
+            TextView person_month = (TextView) findViewById(R.id.person_month);
+            person_month.setText(month+"月数据");
+            TextView oneweek = (TextView) findViewById(R.id.oneweek);
+            if((day >= 1)&&(day <= 7)){
+                oneweek.setText(year+"/"+month+"/"+"01"+year+"/"+month+"/"+"07");
+            }
+            if((day >= 8)&&(day <=14)){
+                oneweek.setText(year+"/"+month+"/"+"08"+"-"+year+"/"+month+"/"+"14");
+            }
+
+
         }
 
         /**
          * X 轴的显示
          */
         private void getAxisXLables(){
+            if(month == 1)
+            {
             for (int i = 0; i < date.length; i++) {
-                mAxisXValues.add(new AxisValue(i).setLabel(date[i]));
+                mAxisXValues.add(new AxisValue(i).setLabel(date[i]));}
+            }
+            if(month == 2)
+            {
+                for (int i = 0; i < date2.length; i++) {
+                    mAxisXValues.add(new AxisValue(i).setLabel(date2[i]));}
             }
         }
         /**

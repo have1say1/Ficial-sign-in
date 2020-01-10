@@ -43,6 +43,10 @@ public class HttpUtils {
         return "{\"userid\":" + "\"" + userid + "\"" + "," + "\"meetingid\":" + "\"" + meetingid + "\"" + "}";
     }
 
+    public String mystatisticsJson(String userid, String meetingid) {
+        return "{\"uid\":" + "\"" + userid + "\"" + "," + "\"mid\":" + "\"" + meetingid + "\"" + "}";
+    }
+
 
 }
 

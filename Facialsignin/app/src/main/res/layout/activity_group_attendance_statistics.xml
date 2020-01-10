@@ -133,6 +133,7 @@
                     app:layout_widthPercent="90%w">
 
                     <TextView
+                        android:id="@+id/group_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|center_vertical"

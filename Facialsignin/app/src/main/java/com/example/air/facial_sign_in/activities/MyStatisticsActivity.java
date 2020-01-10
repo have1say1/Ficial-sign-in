@@ -1,10 +1,13 @@
 package com.example.air.facial_sign_in.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,7 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
+import com.example.air.facial_sign_in.model.Meeting;
+import com.example.air.facial_sign_in.model.UserInfo;
+import com.example.air.facial_sign_in.util.HttpUtils;
+import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -40,8 +48,13 @@ import lecho.lib.hellocharts.model.Column;
 
 import java.util.*;
 
-public class GroupStatisticsActivity extends Activity {
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+public class MyStatisticsActivity extends Activity {
     Intent intent;
+    private static final String TAG ="MyStatisticsActivity" ;
+    private String url ="http://123.56.96.92:3000/api/v1/check/statistic";
 
     Calendar calendar = Calendar.getInstance();
     int year = calendar.get(Calendar.YEAR);
@@ -52,25 +65,32 @@ public class GroupStatisticsActivity extends Activity {
 
     private ColumnChartView mColumnChartView;
 
+    private String userId;
+    private String meetingId = "126133";
+
     //柱状图
     /*========== 数据相关 ==========*/
     private ColumnChartData mColumnChartData;               //柱状图数据
     public final static String[] xValues = new String[]{"正常", "迟到", "早退", "缺席", "请假"};
-    public final static int[] yValues = new int[]{7, 2, 0, 1, 0};
+    public int[] yValues = new int[]{0, 0, 0, 0, 0};
 
     //折线图
-    String[] date = {"周一","周二","周三","周四","周五","周六","周日"};//X轴的标注
-    public final static int[] score= {7,8,8,7,9,6,7};//图表的数据
+    String[] date = {"01-07","08-14","15-21","22-28","29-31"};//X轴的标注
+    String[] date2 = {"01-07","08-14","15-21","22-28","29"};//X轴的标注
+    public int[] score= {0,0,0,0,0};//图表的数据
     private List<PointValue> mPointValues = new ArrayList<PointValue>();
     private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_group_attendance_statistics);
+        setContentView(R.layout.activity_my_attendance);
+        //从服务器申请数据
+        mystatitics();
+
         //折线图
         getAxisXLables();//获取x轴的标注
-        getAxisPoints();//获取坐标点
+//        getAxisPoints();//获取坐标点
         dateshow();
         initLineChart();//初始化
 
@@ -81,10 +101,10 @@ public class GroupStatisticsActivity extends Activity {
     public void onClick(View v) {
         // TODO Auto-generated method stub
         switch (v.getId()) {
-            case R.id.person_statistics:
-                intent = new Intent(GroupStatisticsActivity.this,PersonStatisticsActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.group_statistics:
+//                intent = new Intent(MyStatisticsActivity.this,GroupStatisticsActivity.class);
+//                startActivity(intent);
+//                break;
         }
     }
 
@@ -97,7 +117,7 @@ public class GroupStatisticsActivity extends Activity {
      * 初始化LineChart的一些设置
      */
     private void initLineChart(){
-        lineChart = (LineChartView)findViewById(R.id.group_chart1);
+        lineChart = (LineChartView)findViewById(R.id.my_chart1);
         lineChart.setOnValueTouchListener(new ValueTouchListener0());
         Line line = new Line(mPointValues).setColor(Color.parseColor("#FFCD41"));  //折线的颜色
         List<Line> lines = new ArrayList<Line>();
@@ -154,23 +174,40 @@ public class GroupStatisticsActivity extends Activity {
         Viewport v = new Viewport(lineChart.getMaximumViewport());
         v.left = 0;
         v.right= 7;
+        v.top = 6;
         lineChart.setCurrentViewport(v);
+
+
     }
 
     /**
      * 日期的显示
      */
     private void dateshow() {
-        TextView group_date = (TextView) findViewById(R.id.group_date);
-        group_date.setText(year + "/" + month + "/" + day);
+        TextView person_month = (TextView) findViewById(R.id.person_month1);
+        person_month.setText(month + "月数据");
+        TextView oneweek = (TextView) findViewById(R.id.oneweek1);
+        if ((day >= 1) && (day <= 7)) {
+            oneweek.setText(year + "/" + "0" + month + "/" + "01" + "-" + year + "/" + "0"+ month + "/" + "07");
+        }
+        if ((day >= 8) && (day <= 14)) {
+            oneweek.setText(year + "/" + "0" + month + "/" + "08" + "-" + year + "/" + "0"+ month + "/" + "14");
+        }
     }
 
     /**
      * X 轴的显示
      */
     private void getAxisXLables(){
-        for (int i = 0; i < date.length; i++) {
-            mAxisXValues.add(new AxisValue(i).setLabel(date[i]));
+        if(month == 1)
+        {
+            for (int i = 0; i < date.length; i++) {
+                mAxisXValues.add(new AxisValue(i).setLabel(date[i]));}
+        }
+        if(month == 2)
+        {
+            for (int i = 0; i < date2.length; i++) {
+                mAxisXValues.add(new AxisValue(i).setLabel(date2[i]));}
         }
     }
     /**
@@ -186,9 +223,11 @@ public class GroupStatisticsActivity extends Activity {
 
         @Override
         public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
-            intent = new Intent(GroupStatisticsActivity.this,GroupStatisticsActivity1.class);
-            startActivity(intent);
-            //Toast.makeText(PersonStatisticsActivity.this, "Selected: " + value, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyStatisticsActivity.this, date[pointIndex]+"日正常签到次数 : " +
+                    (int)value.getY(),Toast.LENGTH_SHORT).show();
+//            intent = new Intent(MyStatisticsActivity.this,PersonStatisticsActivity1.class);
+//            startActivity(intent);
+              //Toast.makeText(MyStatisticsActivity.this, "Selected: " + value, Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -200,10 +239,10 @@ public class GroupStatisticsActivity extends Activity {
     }
 
 
-    ////////////////////////////////////折线图////////////////////////////////////////
+////////////////////////////////////折线图////////////////////////////////////////
 ////////////////////////////////////柱状图////////////////////////////////////////
     private void initView() {
-        mColumnChartView = (ColumnChartView) findViewById(R.id.group_chart2);
+        mColumnChartView = (ColumnChartView) findViewById(R.id.my_chart2);
         mColumnChartView.setOnValueTouchListener(new ValueTouchListener());
 
         /*========== 柱状图数据填充 ==========*/
@@ -246,7 +285,7 @@ public class GroupStatisticsActivity extends Activity {
         /*===== 设置竖轴最大值 =====*/
         //法一：
         Viewport v = mColumnChartView.getMaximumViewport();
-        v.top = 10;
+        v.top = 6;
         mColumnChartView.setCurrentViewport(v);
                 /*法二：
                 Viewport v = mColumnChartView.getCurrentViewport();
@@ -259,7 +298,7 @@ public class GroupStatisticsActivity extends Activity {
 
         @Override
         public void onValueSelected(int columnIndex, int subcolumnIndex, SubcolumnValue value) {
-            Toast.makeText(GroupStatisticsActivity.this, xValues[columnIndex]+"人数 : " +
+            Toast.makeText(MyStatisticsActivity.this, xValues[columnIndex]+"次数 : " +
                     (int)value.getValue(),Toast.LENGTH_SHORT).show();
         }
 
@@ -269,6 +308,138 @@ public class GroupStatisticsActivity extends Activity {
         }
     }
 ////////////////////////////////////柱状图////////////////////////////////////////
+
+    //Json数据解析
+    private void StatisticsJson(String result){
+        String monthtime = "2020-0"+ month;
+        JSONObject rs = JSONObject.fromObject(result);
+        if(rs.getInt("errorcode") == 0){
+            JSONObject rsdata = JSONObject.fromObject(rs.get("data"));
+            JSONArray rsperson = JSONArray.fromObject(rsdata.get("personal"));
+            for (int i = 0 ; i < rsperson.size() ; i++){
+                JSONObject rsJson = rsperson.getJSONObject(i);
+                Log.d(TAG, "MyStatisticsActivity返回结果1111:" + i + rsJson);
+                if(rsJson.getString("datetime").substring(0,7).equals(monthtime) )
+                {
+                    //折线图，只记录正常情况数据
+                    if(1 <= Integer.parseInt(rsJson.getString("datetime").substring(8,10))  && Integer.parseInt(rsJson.getString("datetime").substring(8,10))<=7) {
+                        if (rsJson.getString("status").equals("12")) {
+                            score[0] += 1;
+                        }
+                    }
+                    if(8 <= Integer.parseInt(rsJson.getString("datetime").substring(8,10))  && Integer.parseInt(rsJson.getString("datetime").substring(8,10)) <= 14) {
+                        if (rsJson.getString("status").equals("12")) {
+                            score[1] += 1;
+                        }
+                    }
+
+                    //柱状图
+                    if(1 <= day  && day <=7)
+                    {
+                        if(1 <= Integer.parseInt(rsJson.getString("datetime").substring(8,10))  && Integer.parseInt(rsJson.getString("datetime").substring(8,10))<=7) {
+                            //正常
+                            if (rsJson.getString("status").equals("12")) {
+                                yValues[0] += 1;
+                            }
+                            //迟到
+                            if (rsJson.getString("status").equals("22") || rsJson.getString("status").equals("21")) {
+                                yValues[1] += 1;
+                            }
+                            //早退
+                            if (rsJson.getString("status").equals("11") || rsJson.getString("status").equals("10") || rsJson.getString("status").equals("10")) {
+                                yValues[2] += 1;
+                            }
+                            //缺席
+                            if (rsJson.getString("status").equals("00")) {
+                                yValues[3] += 1;
+                            }
+                        }
+
+                    }
+
+                    if(8 <= day  && day <=14)
+                    {
+                        if(8 <= Integer.parseInt(rsJson.getString("datetime").substring(8,10))  && Integer.parseInt(rsJson.getString("datetime").substring(8,10))<=14) {
+                            //正常
+                            if (rsJson.getString("status").equals("12")) {
+                                yValues[0] += 1;
+                            }
+                            //迟到
+                            if (rsJson.getString("status").equals("22") || rsJson.getString("status").equals("21")) {
+                                yValues[1] += 1;
+                            }
+                            //早退
+                            if (rsJson.getString("status").equals("11") || rsJson.getString("status").equals("10") || rsJson.getString("status").equals("10")) {
+                                yValues[2] += 1;
+                            }
+                            //缺席
+                            if (rsJson.getString("status").equals("00")) {
+                                yValues[3] += 1;
+                            }
+                        }
+
+                    }
+
+
+                }
+
+            }
+        }
+    }
+
+
+
+
+    //从服务器申请数据
+    private void mystatitics() {
+        //获取userid数据
+        SharedPreferences prefs = getSharedPreferences("Userdata", Context.MODE_PRIVATE);
+        String alluserdata = prefs.getString("all_userdata",null);
+        Gson gson = new Gson();
+        UserInfo userinfo = gson.fromJson(alluserdata, UserInfo.class);
+        userId = userinfo.getData().getPhoneNumber();
+        new Thread(){
+            @Override
+            public void run() {
+                HttpUtils httpUtils = new HttpUtils();
+                //转换为JSON
+                String user = httpUtils.mystatisticsJson(userId,meetingId);
+
+                Log.d(TAG, "user:" + user);
+
+                try {
+                    final String result = httpUtils.login(url, user);
+                    Log.d(TAG, "MyStatisticsActivity返回结果:" + result);
+
+                    //Json数据解析
+                    StatisticsJson(result);
+                    final JSONObject rs1 = JSONObject.fromObject(result);
+
+                    //更新UI,在UI线程中
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(rs1.getInt("errorcode") == 0){
+                                //折线图
+                                getAxisPoints();//获取坐标点
+                                initLineChart();//初始化
+                                //柱状图
+                                initView();
+
+                            }else{
+
+
+                            }
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }.start();
+
+    }
 
 
 }
