@@ -72,12 +72,12 @@ public class MyStatisticsActivity extends Activity {
     /*========== 数据相关 ==========*/
     private ColumnChartData mColumnChartData;               //柱状图数据
     public final static String[] xValues = new String[]{"正常", "迟到", "早退", "缺席", "请假"};
-    public int[] yValues = new int[]{0, 0, 0, 0, 0};
+    public int[] yValues = new int[]{1, 0, 0, 0, 0};
 
     //折线图
     String[] date = {"01-07","08-14","15-21","22-28","29-31"};//X轴的标注
     String[] date2 = {"01-07","08-14","15-21","22-28","29"};//X轴的标注
-    public int[] score= {0,0,0,0,0};//图表的数据
+    public int[] score= {0,1,0,0,0};//图表的数据
     private List<PointValue> mPointValues = new ArrayList<PointValue>();
     private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
 
@@ -374,7 +374,7 @@ public class MyStatisticsActivity extends Activity {
                             }
                             //缺席
                             if (rsJson.getString("status").equals("00")) {
-                                yValues[3] += 1;
+                               // yValues[3] += 1;
                             }
                         }
 
