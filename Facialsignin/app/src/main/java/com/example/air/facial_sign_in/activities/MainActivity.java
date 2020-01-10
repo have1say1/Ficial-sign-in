@@ -135,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences mSharedPreferences = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = mSharedPreferences.edit();
                         editor.putString("meetingid", meetings.get(pos).getMid());
+                        editor.putString("meetingname", meetings.get(pos).getMname());
+                        editor.putString("meetinglocation", meetings.get(pos).getLocationDiscribe());
+                        Log.d("qqq",meetings.get(pos).getLocationDiscribe());
                         editor.apply();
                         //Toast ts = Toast.makeText(getBaseContext(),meetings.get(pos).getMid(),Toast.LENGTH_LONG);
                         //ts.show();

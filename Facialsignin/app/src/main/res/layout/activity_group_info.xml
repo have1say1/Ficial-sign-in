@@ -66,9 +66,9 @@
                     app:layout_marginTopPercent="30%w">
 
                     <TextView
+                        android:id="@+id/group_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="移动开发课程"
                         android:textColor="@color/white"
                         android:textSize="30sp"
                         app:layout_marginTopPercent="3%h" />
@@ -225,10 +225,10 @@
                 app:layout_widthPercent="69%w">
 
                 <TextView
+                    android:id="@+id/group_name2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical"
-                    android:text="移动开发课程" />
+                    android:layout_gravity="right|center_vertical" />
             </com.zhy.android.percent.support.PercentFrameLayout>
 
             <ImageView
@@ -299,10 +299,11 @@
                 app:layout_widthPercent="69%w">
 
                 <TextView
+                    android:id="@+id/group_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical"
-                    android:text="软件与微电子学院" />
+                    android:text="中航广场字节跳动总部"/>
             </com.zhy.android.percent.support.PercentFrameLayout>
 
             <ImageView
