@@ -66,7 +66,6 @@ public class AddMeeting extends AppCompatActivity {
                 Intent intent = new Intent(AddMeeting.this,MainActivity.class);
                 startActivity(intent);
 
-
             }
         }).start();
     }

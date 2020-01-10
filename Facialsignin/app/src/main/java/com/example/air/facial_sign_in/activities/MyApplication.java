@@ -7,6 +7,9 @@ public class MyApplication extends Application {
     public  boolean state;
     private String uid;
     private String mid;
+
+
+    private String scanresult;
     @Override
     public void onCreate() {
         // TODO Auto-generated method stub
@@ -36,4 +39,13 @@ public class MyApplication extends Application {
     public void setMid(String mid) {
         this.mid = mid;
     }
+
+    public String getScanresult() {
+        return scanresult;
+    }
+
+    public void setScanresult(String scanresult) {
+        this.scanresult = scanresult;
+    }
+
 }

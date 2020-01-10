@@ -48,6 +48,7 @@
         <activity android:name=".activities.Regist4Activity" />
         <activity android:name=".activities.Regist5Activity" />
         <activity android:name=".activities.InviteActivity" />
+        <activity android:name=".activities.ScanActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.BaseActivity" />
         <activity android:name=".activities.SettingActivity" />

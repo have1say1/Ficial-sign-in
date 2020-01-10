@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.air.facial_sign_in.R;
@@ -35,6 +36,7 @@ public class InviteActivity extends AppCompatActivity implements VerificationCod
 
         textView = findViewById(R.id.text);
         verificationcodeview.setOnCodeFinishListener(this);
+
     }
 
     @Override
@@ -104,6 +106,70 @@ public class InviteActivity extends AppCompatActivity implements VerificationCod
     public void clear(View view) {
         verificationcodeview.setEmpty();
     }
+
+    public void scan(View view){
+        intent = new Intent(InviteActivity.this, ScanActivity.class);
+        startActivityForResult(intent,1);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode){
+            case 1:
+                if (resultCode==2){
+                    final String returnData = data.getStringExtra("data");
+                    Log.d("ScanResult",returnData);
+                    new Thread(){
+                        @Override
+                        public void run() {
+                            //获取userid数据
+                            SharedPreferences prefs = getSharedPreferences("Userdata", Context.MODE_PRIVATE);
+                            String alluserdata = prefs.getString("all_userdata",null);
+                            Gson gson = new Gson();
+                            UserInfo userinfo = gson.fromJson(alluserdata, UserInfo.class);
+                            userId = userinfo.getData().getPhoneNumber();
+                            Log.d("InviteActivity", " myuserId:" +  userId);
+
+                            HttpUtils httpUtils = new HttpUtils();
+                            //转换为JSON
+                            String meeting = httpUtils.inviteJson(userId,returnData);
+                            Log.d("InviteActivity", "meeting:" + meeting);
+
+                            try {
+                                final String result = httpUtils.login(url, meeting);
+                                Log.d("InviteActivity", "InviteActivity返回结果:" + result);
+                                //Gson gson = new Gson();
+                                final Meeting meetinginfo = gson.fromJson(result, Meeting.class);
+//                    final MeetingInfo meetinginfo = gson.fromJson(result, MeetingInfo.class);//result就是服务器返回的Json字符串
+                                //更新UI,在UI线程中
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if(meetinginfo.getErrorCode() == 0){
+                                            intent = new Intent(InviteActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                        }else{
+                                            if(meetinginfo.getMSG().equals("user already in this meeting !") )
+                                            {
+                                                textView.setText("您已经加入此会议，请勿重复加入");
+                                            }
+                                            if(meetinginfo.getMSG().equals("Meeting Not Found"))
+                                            {
+                                                textView.setText("该邀请码不存在或者已经失效");
+                                            }
+
+                                        }
+                                    }
+                                });
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }.start();
+                }
+        }
+    }
+
 
     @Override
     public void onTextChange(View view, String content) {

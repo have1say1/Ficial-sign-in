@@ -82,6 +82,27 @@
                 app:vcv_et_text_size="6sp" />
 
 
+
+            <com.zhy.android.percent.support.PercentFrameLayout
+                android:id="@+id/scanbtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/rec"
+                android:onClick="scan"
+                app:layout_heightPercent="7%h"
+                app:layout_widthPercent="83%w">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="扫描二维码"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
+            </com.zhy.android.percent.support.PercentFrameLayout>
             <com.zhy.android.percent.support.PercentFrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -101,7 +122,6 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
             </com.zhy.android.percent.support.PercentFrameLayout>
-
             <TextView
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
@@ -111,6 +131,8 @@
                 android:textSize="18dp"
                 android:textColor="@color/yellow"
                 android:text="" />
+
+
 
         </com.zhy.android.percent.support.PercentLinearLayout>
 

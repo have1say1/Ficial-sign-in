@@ -35,6 +35,11 @@
         parent="android:Theme.Translucent.NoTitleBar.Fullscreen">
     </style>
 
+    <style name="MatchMatch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 
 
 </resources>
