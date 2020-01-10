@@ -41,9 +41,9 @@ public class AddMeeting extends AppCompatActivity {
     }
     public void submitAddMeeting(View v){
         mname = ((EditText)findViewById(R.id.add_meeting_name)).getText().toString();
-        startTime = Integer.parseInt(((EditText)findViewById(R.id.add_meeting_st)).getText().toString());
-        endTime = Integer.parseInt(((EditText)findViewById(R.id.add_meeting_ed)).getText().toString());
-        location = ((EditText)findViewById(R.id.add_meeting_place)).getText().toString();
+        //startTime = Integer.parseInt(((EditText)findViewById(R.id.add_meeting_st)).getText().toString());
+        //endTime = Integer.parseInt(((EditText)findViewById(R.id.add_meeting_ed)).getText().toString());
+        location = ((EditText)findViewById(R.id.add_meeting_place)).getHint().toString();
         //userId = application.getUid();
         //获取userid数据
         SharedPreferences prefs = getSharedPreferences("Userdata", AddMeeting.this.MODE_PRIVATE);
@@ -56,7 +56,7 @@ public class AddMeeting extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                AddMeetingService s = new AddMeetingService(new Meeting("fengmian",mname,"","",location,34,56,checkRule,100,566,userId,1));
+                AddMeetingService s = new AddMeetingService(new Meeting("fengmian",mname,"","","字节跳动总部",34,56,checkRule,100,566,userId,1));
                 try {
                     String rs = s.sendPost();
 

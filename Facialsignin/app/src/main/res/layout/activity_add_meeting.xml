@@ -144,11 +144,15 @@
 
                     <EditText
                         android:id="@+id/add_meeting_place"
-                        android:layout_width="match_parent"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="北京大学软件与微电子学院3号楼3302"
+                        android:hint="中航广场字节跳动总部"
                         android:textColorHint="@color/grey" />
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/dingwei"/>
 
 
                 </LinearLayout>
