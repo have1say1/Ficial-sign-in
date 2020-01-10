@@ -53,14 +53,14 @@
                     android:textSize="16sp"
                     android:gravity="right" />
 
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:background="@null"
                     android:hint=""
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textColorHint="@color/white" />
+                    android:text="中国"
+                    android:textSize="16sp"/>
 
 
             </LinearLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.air.facial_sign_in.R;
+import com.example.air.facial_sign_in.model.Meeting;
 
 public class MeetingActivity extends AppCompatActivity {
     private Intent intent;
@@ -59,5 +60,10 @@ public class MeetingActivity extends AppCompatActivity {
 
         }
 
+    }
+    public void onClickBack(View v) {
+        // TODO Auto-generated method stub
+        Intent intent = new Intent(MeetingActivity.this,MainActivity.class);
+        startActivity(intent);
     }
 }

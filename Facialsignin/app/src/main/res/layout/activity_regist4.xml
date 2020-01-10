@@ -143,7 +143,7 @@
                     android:id="@+id/regist2_msg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="请使用后置摄像头"
+                    android:text="请使用前置摄像头"
                     app:layout_marginBottomPercent="10%w"
                     tools:layout_editor_absoluteY="27dp" />
 

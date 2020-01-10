@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.BottomSheetDialog;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.air.facial_sign_in.R;
 import com.example.air.facial_sign_in.model.Meeting;
@@ -43,7 +44,7 @@ public class AddMeeting extends AppCompatActivity {
         mname = ((EditText)findViewById(R.id.add_meeting_name)).getText().toString();
         //startTime = Integer.parseInt(((EditText)findViewById(R.id.add_meeting_st)).getText().toString());
         //endTime = Integer.parseInt(((EditText)findViewById(R.id.add_meeting_ed)).getText().toString());
-        location = ((EditText)findViewById(R.id.add_meeting_place)).getHint().toString();
+        location = ((TextView)findViewById(R.id.add_meeting_place)).getText().toString();
         //userId = application.getUid();
         //获取userid数据
         SharedPreferences prefs = getSharedPreferences("Userdata", AddMeeting.this.MODE_PRIVATE);
