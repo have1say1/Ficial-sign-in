@@ -1,31 +1,43 @@
 package com.example.air.facial_sign_in.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.air.facial_sign_in.R;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class UserDetailActivity extends AppCompatActivity {
     Toast tst;
     private Intent intent;
+    private TextView username;
+    private CircleImageView userava;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail);
+        username = findViewById(R.id.user_name);
+        userava = findViewById(R.id.circleImageView2);
+
+        SharedPreferences mSharedPreferences = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
+        username.setText(mSharedPreferences.getString("username",null));
+        final String face = mSharedPreferences.getString("userface",null);
+
+       // userava.setImageBitmap(decodedByte);
     }
     public void onClick(View v){
         switch (v.getId()) {
-            case R.id.qrcode_share:
-                intent=new Intent(UserDetailActivity.this,ShareActivity.class);
-                System.out.println("1");
-                startActivity(intent);
-                break;
             case R.id.my_settings:
                 intent=new Intent(UserDetailActivity.this,SettingActivity.class);
                 System.out.println("2");

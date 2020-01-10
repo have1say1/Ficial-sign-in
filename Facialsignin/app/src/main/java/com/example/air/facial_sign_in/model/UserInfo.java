@@ -42,6 +42,15 @@ public class UserInfo extends LitePalSupport {
         private String username;
         private int sex;
         private String organization;
+
+        public String getFace() {
+            return face;
+        }
+
+        public void setFace(String face) {
+            this.face = face;
+        }
+
         private String face;
 
 

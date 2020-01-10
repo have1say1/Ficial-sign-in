@@ -34,12 +34,12 @@
                         app:layout_marginLeftPercent="2%w">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:src="@drawable/default_ava"
                             android:id="@+id/circleImageView2"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:src="@drawable/tx4"
                             app:layout_heightPercent="20%w"
                             app:layout_widthPercent="20%w" />
 
@@ -53,9 +53,10 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/user_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="贾丽春"
+                            android:text=""
                             android:textColor="@color/colorPrimary"
                             android:textSize="20sp"
                             app:layout_marginLeftPercent="2%w"
@@ -179,35 +180,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp"/>
 
-            <com.zhy.android.percent.support.PercentLinearLayout
-                android:id="@+id/qrcode_share"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:onClick="onClick"
-                android:background="@color/white"
-                android:layout_marginBottom="1dp"
-                app:layout_heightPercent="15%w">
-
-                <ImageView
-                    android:layout_width="23dp"
-                    android:layout_height="23dp"
-                    android:src="@drawable/dakashare"
-                    app:layout_marginLeftPercent="3%w"
-                    app:layout_heightPercent="80%h"
-                    android:layout_gravity="center_vertical"/>
-
-                <TextView
-                    android:id="@+id/tv_qrcode_share"
-                    android:layout_width="60dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center|center_horizontal"
-                    android:text="二维码分享"
-                    android:textColor="@color/cardview_dark_background"
-                    android:textSize="16sp"
-                    app:layout_marginLeftPercent="4%w"
-                    app:layout_marginTopPercent="0%w"
-                    app:layout_widthPercent="30%w" />
-            </com.zhy.android.percent.support.PercentLinearLayout>
 
 
             <View

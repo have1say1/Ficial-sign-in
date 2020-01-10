@@ -104,6 +104,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 //保存登陆状态数据到SharedPreferences
                                 SharedPreferences mSharedPreferences = getSharedPreferences("LoginState", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                editor.putString("username", userinfo.getData().getUserName());
+                                editor.putString("userid", userinfo.getData().getPhoneNumber());
+                                editor.putString("userface", userinfo.getData().getFace());
                                 editor.putBoolean("IsLogin",true);
                                 editor.apply();
 
