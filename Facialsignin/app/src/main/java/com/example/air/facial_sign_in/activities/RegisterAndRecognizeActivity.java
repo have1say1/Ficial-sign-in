@@ -1,6 +1,7 @@
 package com.example.air.facial_sign_in.activities;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Point;
@@ -19,6 +20,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.arcsoft.face.ActiveFileInfo;
 import com.arcsoft.face.AgeInfo;
@@ -796,6 +798,10 @@ public class RegisterAndRecognizeActivity extends BaseActivity implements ViewTr
                             }
                             requestFeatureStatusMap.put(requestId, RequestFeatureStatus.SUCCEED);
                             faceHelper.setName(requestId, getString(R.string.recognize_success_notice, compareResult.getUserName()));
+                            Intent intent=new Intent(RegisterAndRecognizeActivity.this,PersonalNoteActivity.class);
+                            startActivity(intent);
+                            Toast ts = Toast.makeText(getBaseContext(),"识别成功",Toast.LENGTH_LONG);
+                            ts.show();
 
                         } else {
                             faceHelper.setName(requestId, getString(R.string.recognize_failed_notice, "NOT_REGISTERED"));
