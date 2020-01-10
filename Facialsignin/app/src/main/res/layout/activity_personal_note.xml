@@ -18,13 +18,15 @@
             android:text="个人记录"
             android:textSize="18sp"
             android:textColor="@color/cardview_dark_background"/>
+
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/blk_back"
             android:layout_gravity="center_vertical"
+            android:onClick="onClickBack"
             android:paddingLeft="10dp"
-            app:layout_heightPercent="40%h"/>
+            android:src="@drawable/blk_back"
+            app:layout_heightPercent="40%h" />
     </com.zhy.android.percent.support.PercentFrameLayout>
     <CalendarView
         android:id="@+id/calenderView"
