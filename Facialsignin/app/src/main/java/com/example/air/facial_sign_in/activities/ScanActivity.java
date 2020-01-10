@@ -82,16 +82,17 @@ public class ScanActivity extends AppCompatActivity implements QRCodeView.Delega
 
     @Override
     public void onScanQRCodeSuccess(String result) {
-        Log.i(TAG, "result:" + result);
+        Log.d(TAG, "result:" + result);
+        System.out.println("result:" +result);
         setTitle("扫描结果为：" + result);
         //vibrate();
-        Pattern pattern = Pattern.compile("[0-9]+");
+        Pattern pattern = Pattern.compile("^(facial://)+([0-9]+)");
         Matcher matcher = pattern.matcher((CharSequence) result);
-        boolean res = matcher.matches() && (result.length() == 6);
+        boolean res = matcher.matches() && (result.length() == 15);
         if (res) {
             Intent intent = new Intent();
             //在intent当中调用putExtra()方法来把数据返回
-            intent.putExtra("data",result);
+            intent.putExtra("data",result.substring(9));
             //setResult()方法是返回数据时必须要使用到的额，这里需要两个参数
             //一个参数来和getStringExtra()方法当中的参数项对应
             //后一个参数和当前Activity中的数据data对应

@@ -12,6 +12,8 @@ public class MeetingActivity extends AppCompatActivity {
     private Intent intent;
     private TextView title;
     private MyApplication application;
+    private String mname;
+    private String mid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,9 @@ public class MeetingActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.meeting_title);
         intent = getIntent();
         title.setText(intent.getStringExtra("mname"));
+        mname = intent.getStringExtra("mname");
+        mid = intent.getStringExtra("mid");
+
     }
     public void onClickDaka(View v){
         // TODO Auto-generated method stub
@@ -36,6 +41,8 @@ public class MeetingActivity extends AppCompatActivity {
                 break;
             case R.id.daka_share:
                 intent = new Intent(MeetingActivity.this, ShareActivity.class);
+                intent.putExtra("mname",mname);
+                intent.putExtra("mid",mid);
                 startActivity(intent);
                 System.out.println("4");
                 break;
